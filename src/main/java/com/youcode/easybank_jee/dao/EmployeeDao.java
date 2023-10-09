@@ -1,4 +1,6 @@
 package com.youcode.easybank_jee.dao;
 
-public interface EmployeeDao {
+import com.youcode.easybank_jee.entities.Employee;
+
+public interface EmployeeDao extends IData<Employee, Integer>{
 }

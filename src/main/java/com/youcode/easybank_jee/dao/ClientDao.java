@@ -1,4 +1,6 @@
 package com.youcode.easybank_jee.dao;
 
-public interface ClientDao {
+import com.youcode.easybank_jee.entities.Client;
+
+public interface ClientDao extends IData<Client, Integer>{
 }
