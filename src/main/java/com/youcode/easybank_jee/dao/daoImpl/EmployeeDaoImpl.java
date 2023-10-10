@@ -26,13 +26,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
         String insertSQL = "INSERT INTO employees (firstName, lastName, birthDate, phone, address, recruitmentDate, email) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING matricule";
         try (PreparedStatement preparedStatement = conn.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, employee.get_firstName());
-            preparedStatement.setString(2, employee.get_lastName());
-            preparedStatement.setDate(3, java.sql.Date.valueOf(employee.get_birthDate()));
-            preparedStatement.setString(4, employee.get_phone());
-            preparedStatement.setString(5, employee.get_address());
-            preparedStatement.setDate(6, java.sql.Date.valueOf(employee.get_recruitmentDate()));
-            preparedStatement.setString(7, employee.get_email());
+            preparedStatement.setString(1, employee.getFirstName());
+            preparedStatement.setString(2, employee.getLastName());
+            preparedStatement.setDate(3, java.sql.Date.valueOf(employee.getBirthDate()));
+            preparedStatement.setString(4, employee.getPhone());
+            preparedStatement.setString(5, employee.getAddress());
+            preparedStatement.setDate(6, java.sql.Date.valueOf(employee.getRecruitmentDate()));
+            preparedStatement.setString(7, employee.getEmail());
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -43,7 +43,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     int matricule = generatedKeys.getInt(1);
-                    employee.set_matricule(matricule);
+                    employee.setMatricule(matricule);
                 } else {
                     throw new EmployeeException("Creating employee failed, no ID obtained.");
                 }
@@ -64,13 +64,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 "WHERE matricule = ?";
 
         try (PreparedStatement preparedStatement = conn.prepareStatement(updateSQL)) {
-            preparedStatement.setString(1, employee.get_firstName());
-            preparedStatement.setString(2, employee.get_lastName());
-            preparedStatement.setDate(3, java.sql.Date.valueOf(employee.get_birthDate()));
-            preparedStatement.setString(4, employee.get_phone());
-            preparedStatement.setString(5, employee.get_address());
-            preparedStatement.setDate(6, java.sql.Date.valueOf(employee.get_recruitmentDate()));
-            preparedStatement.setString(7, employee.get_email());
+            preparedStatement.setString(1, employee.getFirstName());
+            preparedStatement.setString(2, employee.getLastName());
+            preparedStatement.setDate(3, java.sql.Date.valueOf(employee.getBirthDate()));
+            preparedStatement.setString(4, employee.getPhone());
+            preparedStatement.setString(5, employee.getAddress());
+            preparedStatement.setDate(6, java.sql.Date.valueOf(employee.getRecruitmentDate()));
+            preparedStatement.setString(7, employee.getEmail());
             preparedStatement.setInt(8, matricule);
 
             int affectedRows = preparedStatement.executeUpdate();
@@ -110,14 +110,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     Employee employee = new Employee();
-                    employee.set_matricule(resultSet.getInt("matricule"));
-                    employee.set_firstName(resultSet.getString("firstName"));
-                    employee.set_lastName(resultSet.getString("lastName"));
-                    employee.set_birthDate(resultSet.getDate("birthDate").toLocalDate());
-                    employee.set_phone(resultSet.getString("phone"));
-                    employee.set_address(resultSet.getString("address"));
-                    employee.set_recruitmentDate(resultSet.getDate("recruitmentDate").toLocalDate());
-                    employee.set_email(resultSet.getString("email"));
+                    employee.setMatricule(resultSet.getInt("matricule"));
+                    employee.setFirstName(resultSet.getString("firstName"));
+                    employee.setLastName(resultSet.getString("lastName"));
+                    employee.setBirthDate(resultSet.getDate("birthDate").toLocalDate());
+                    employee.setPhone(resultSet.getString("phone"));
+                    employee.setAddress(resultSet.getString("address"));
+                    employee.setRecruitmentDate(resultSet.getDate("recruitmentDate").toLocalDate());
+                    employee.setEmail(resultSet.getString("email"));
 
                     return Optional.of(employee);
                 } else {
@@ -140,14 +140,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
             while (resultSet.next()) {
                 Employee employee = new Employee();
-                employee.set_matricule(resultSet.getInt("matricule"));
-                employee.set_firstName(resultSet.getString("firstName"));
-                employee.set_lastName(resultSet.getString("lastName"));
-                employee.set_birthDate(resultSet.getDate("birthDate").toLocalDate());
-                employee.set_phone(resultSet.getString("phone"));
-                employee.set_address(resultSet.getString("address"));
-                employee.set_recruitmentDate(resultSet.getDate("recruitmentDate").toLocalDate());
-                employee.set_email(resultSet.getString("email"));
+                employee.setMatricule(resultSet.getInt("matricule"));
+                employee.setFirstName(resultSet.getString("firstName"));
+                employee.setLastName(resultSet.getString("lastName"));
+                employee.setBirthDate(resultSet.getDate("birthDate").toLocalDate());
+                employee.setPhone(resultSet.getString("phone"));
+                employee.setAddress(resultSet.getString("address"));
+                employee.setRecruitmentDate(resultSet.getDate("recruitmentDate").toLocalDate());
+                employee.setEmail(resultSet.getString("email"));
 
                 employees.add(employee);
             }

@@ -10,13 +10,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person {
-    protected String _lastName;
+    protected String lastName;
 
-    protected String _firstName;
+    protected String firstName;
 
-    protected LocalDate _birthDate;
+    protected LocalDate birthDate;
 
-    protected String _phone;
+    protected String phone;
 
-    protected String _address;
+    protected String address;
 }

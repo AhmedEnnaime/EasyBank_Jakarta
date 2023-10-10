@@ -1,11 +1,11 @@
 db-build:
-	@docker build -t postgres-db -f postgres.Dockerfile .
+	@docker build -t psql-db -f postgres.Dockerfile .
 db-run:
-	@docker run -d --name easybank-db -p 5433:5432 -v easybank_data:/var/lib/postgresql/data postgres-db
+	@docker run -d --name easybank_jee-db -p 5433:5432 -v easybank_jee_data:/var/lib/postgresql/data psql-db
 db-start:
-	@docker start easybank-db
+	@docker start easybank_jee-db
 db-stop:
-	@docker stop easybank-db
+	@docker stop easybank_jee-db
 test:
 	mvn clean verify
 clean:

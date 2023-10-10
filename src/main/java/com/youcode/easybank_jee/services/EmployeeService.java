@@ -2,16 +2,16 @@ package com.youcode.easybank_jee.services;
 
 import com.youcode.easybank_jee.dao.daoImpl.EmployeeDaoImpl;
 import com.youcode.easybank_jee.entities.Employee;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.List;
 
+@ApplicationScoped
 public class EmployeeService {
 
+    @Inject
     private EmployeeDaoImpl employeeDao;
-
-    public EmployeeService(EmployeeDaoImpl employeeDao) {
-        this.employeeDao = employeeDao;
-    }
 
 
     public Employee createEmployee(Employee employee) throws Exception {
@@ -23,7 +23,7 @@ public class EmployeeService {
     }
 
     public boolean deleteEmployee(Integer id) {
-        if (employeeDao.findByID(id).isEmpty()) {
+        if (id.toString().isEmpty() || employeeDao.findByID(id).isEmpty()) {
             return false;
         }else {
             return employeeDao.delete(id);

@@ -10,24 +10,24 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Employee extends Person{
-    private int _matricule;
+    private int matricule;
 
-    private LocalDate _recruitmentDate;
+    private LocalDate recruitmentDate;
 
-    private String _email;
+    private String email;
 
     public Employee(String lastName, String firstName, LocalDate birthDate, String phone, String address,
                     int matricule, LocalDate recruitmentDate, String email) {
         super(lastName, firstName, birthDate, phone, address);
-        this._matricule = matricule;
-        this._recruitmentDate = recruitmentDate;
-        this._email = email;
+        this.matricule = matricule;
+        this.recruitmentDate = recruitmentDate;
+        this.email = email;
     }
 
     public Employee(String lastName, String firstName, LocalDate birthDate, String phone, String address,
                     LocalDate recruitmentDate, String email) {
         super(lastName, firstName, birthDate, phone, address);
-        this._recruitmentDate = recruitmentDate;
-        this._email = email;
+        this.recruitmentDate = recruitmentDate;
+        this.email = email;
     }
 }
