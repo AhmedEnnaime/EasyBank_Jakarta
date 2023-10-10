@@ -14,7 +14,7 @@
         <ul class="nav__links">
             <li class="nav__item"><a class="nav__link" href="#">Clients</a>
             </li>
-            <li class="nav__item"><a class="nav__link" href="${pageContext.servletContext.contextPath}/EmployeeServlet">Employees</a>
+            <li class="nav__item"><a class="nav__link" href="${pageContext.servletContext.contextPath}/employees">Employees</a>
             </li>
             <li class="nav__item">
 

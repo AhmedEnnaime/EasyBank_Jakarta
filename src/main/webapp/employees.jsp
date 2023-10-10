@@ -11,6 +11,7 @@
 <head>
     <title>Employees</title>
     <link rel="stylesheet" href="./css/employees.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <header class="header">
@@ -32,6 +33,10 @@
 </header>
 <div class="content">
     <button class="add-button">Add employee</button>
+    <div class="search-container">
+        <input type="search" id="employeeSearch" placeholder="Search by last name...">
+
+    </div>
     <table>
         <thead>
         <tr>
@@ -68,6 +73,145 @@
     </table>
 </div>
 
+<div id="employeeModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Add Employee</h2>
+        <form action="${pageContext.request.contextPath}/employees" method="POST">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required><br>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required><br>
+
+            <label for="birthdate">Birthdate:</label>
+            <input type="date" id="birthdate" name="birthdate" required><br>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required><br>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="recruitmentDate">Recruitment Date:</label>
+            <input type="date" id="recruitmentDate" name="recruitmentDate" required><br>
+
+            <div class="form-group">
+                <button type="submit" class="submit-button">Add Employee</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="updateEmployeeModal" class="modal">
+    <div class="modal-content">
+        <span class="close-update">&times;</span>
+        <h2>Update Employee</h2>
+        <form action="" method="POST">
+
+            <input type="hidden" id="updateEmployeeId" name="employeeId">
+
+            <label for="updateFirstName">First Name:</label>
+            <input type="text" id="updateFirstName" name="firstName" required><br>
+
+            <label for="updateLastName">Last Name:</label>
+            <input type="text" id="updateLastName" name="lastName" required><br>
+
+            <label for="updateBirthdate">Birthdate:</label>
+            <input type="date" id="updateBirthdate" name="birthdate" required><br>
+
+            <label for="updatePhone">Phone:</label>
+            <input type="tel" id="updatePhone" name="phone" required><br>
+
+            <label for="updateAddress">Address:</label>
+            <input type="text" id="updateAddress" name="address" required><br>
+
+            <label for="updateEmail">Email:</label>
+            <input type="email" id="updateEmail" name="email" required><br>
+
+            <label for="updateRecruitmentDate">Recruitment Date:</label>
+            <input type="date" id="updateRecruitmentDate" name="recruitmentDate" required><br>
+
+            <div class="form-group">
+                <button type="submit" class="submit-button">Update Employee</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#employeeSearch").on("input", function() {
+            const searchText = $(this).val().toLowerCase();
+            $(".content table tbody tr").each(function() {
+                const lastName = $(this).find("td:nth-child(3)").text().toLowerCase();
+                if (lastName.indexOf(searchText) !== -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        $(".add-button").click(function() {
+            $("#employeeModal").css("display", "block");
+        });
+
+        $(".close, .modal").click(function() {
+            $("#employeeModal").css("display", "none");
+        });
+
+        $(".modal-content").click(function(event) {
+            event.stopPropagation();
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+
+        $(".update-button").click(function() {
+            const row = $(this).closest("tr");
+            const employeeId = row.find("td:first").text();
+            const firstName = row.find("td:nth-child(2)").text();
+            const lastName = row.find("td:nth-child(3)").text();
+            const birthdate = row.find("td:nth-child(4)").text();
+            const phone = row.find("td:nth-child(5)").text();
+            const address = row.find("td:nth-child(6)").text();
+            const email = row.find("td:nth-child(7)").text();
+            const recruitmentDate = row.find("td:nth-child(8)").text();
+
+            $("#updateEmployeeId").val(employeeId);
+            $("#updateFirstName").val(firstName);
+            $("#updateLastName").val(lastName);
+            $("#updateBirthdate").val(birthdate);
+            $("#updatePhone").val(phone);
+            $("#updateAddress").val(address);
+            $("#updateEmail").val(email);
+            $("#updateRecruitmentDate").val(recruitmentDate);
+
+            $("#updateEmployeeModal").css("display", "block");
+        });
+
+        $(".close-update, #updateEmployeeModal").click(function() {
+            $("#updateEmployeeModal").css("display", "none");
+        });
+
+        $(".modal-content").click(function(event) {
+            event.stopPropagation();
+        });
+    });
+
+</script>
 
 </body>
 </html>

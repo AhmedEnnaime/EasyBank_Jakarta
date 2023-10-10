@@ -1,15 +1,17 @@
+/* Reset some default styles */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: inherit;
+    box-sizing: border-box;
 }
 
+/* Set a base font size and enable smooth scrolling */
 html {
     font-size: 62.5%;
-    box-sizing: border-box;
     scroll-behavior: smooth;
 }
 
+/* Button styles */
 .btn {
     display: inline-block;
     background-color: #5ec576;
@@ -37,11 +39,7 @@ html {
     transition: all 0.3s;
 }
 
-.lazy-img {
-    filter: blur(20px);
-}
-
-/* NAVIGATION */
+/* Navigation styles */
 .nav {
     display: flex;
     justify-content: space-between;
@@ -52,7 +50,6 @@ html {
     z-index: 100;
 }
 
-/* nav and stickly class at the same time */
 .nav.sticky {
     position: fixed;
     background-color: rgba(255, 255, 255, 0.95);
@@ -98,6 +95,7 @@ html {
     color: #333;
 }
 
+/* Table styles */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -120,6 +118,7 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
+/* Button container styles */
 .button-container {
     text-align: right;
     margin-top: 10px;
@@ -129,10 +128,14 @@ tr:nth-child(even) {
     padding: 5px 10px;
     margin-right: 10px;
 }
+
+/* Content styles */
 .content {
     margin-top: 20px;
     padding: 40px;
 }
+
+/* Add employee button styles */
 .add-button {
     margin-bottom: 20px;
     background-color: #5ec576;
@@ -146,3 +149,85 @@ tr:nth-child(even) {
     transition: all 0.3s;
 }
 
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Form and input styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="tel"],
+input[type="email"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.4rem;
+}
+
+.submit-button {
+    background-color: #5ec576;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background-color: #4bbb7d;
+}
+
+.search-container {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+#employeeSearch {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    width: 100%;
+    max-width: 300px;
+    background-color: #f2f2f2;
+}
