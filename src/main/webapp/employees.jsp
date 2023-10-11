@@ -63,7 +63,7 @@
                 <td>${employee.recruitmentDate}</td>
                 <td>
                     <button class="update-button">Update</button>
-                    <button class="delete-button">Delete</button>
+                    <button class="delete-button" data-employeeid="${employee.matricule}">Delete</button>
                 </td>
             </tr>
         </c:forEach>
@@ -77,7 +77,7 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Add Employee</h2>
-        <form action="${pageContext.request.contextPath}/employees" method="POST">
+        <form action="${pageContext.request.contextPath}/employees?action=insert" method="POST">
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" name="firstName" required><br>
 
@@ -100,7 +100,7 @@
             <input type="date" id="recruitmentDate" name="recruitmentDate" required><br>
 
             <div class="form-group">
-                <button type="submit" class="submit-button">Add Employee</button>
+                <button type="submit" name="action" class="submit-button">Add Employee</button>
             </div>
         </form>
     </div>
@@ -111,7 +111,7 @@
     <div class="modal-content">
         <span class="close-update">&times;</span>
         <h2>Update Employee</h2>
-        <form action="" method="POST">
+        <form action="${pageContext.request.contextPath}/employees?action=update" method="POST">
 
             <input type="hidden" id="updateEmployeeId" name="employeeId">
 
@@ -137,11 +137,44 @@
             <input type="date" id="updateRecruitmentDate" name="recruitmentDate" required><br>
 
             <div class="form-group">
-                <button type="submit" class="submit-button">Update Employee</button>
+                <button type="submit" name="action" class="submit-button">Update Employee</button>
             </div>
         </form>
     </div>
 </div>
+
+<div id="deleteEmployeeModal" class="modal">
+    <div class="modal-content delete-modal">
+        <h2>Delete Employee</h2>
+        <p>Are you sure you want to delete this employee?</p>
+        <form action="${pageContext.request.contextPath}/employees?action=delete" method="POST">
+            <input type="hidden" id="deleteEmployeeId" name="deleteEmployeeId">
+            <div class="form-group">
+                <button type="submit" name="action" value="deleteEmployee" class="delete-button">Delete</button>
+                <button type="button" class="cancel-button">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+
+        $(".delete-button").click(function() {
+            const row = $(this).closest("tr");
+            const employeeId = row.find("td:first").text();
+            console.log(employeeId);
+            // const employeeId = $(this).data("employeeid");
+            $("#deleteEmployeeId").val(employeeId);
+            $("#deleteEmployeeModal").css("display", "block");
+        });
+
+        $(".cancel-button").click(function() {
+            $("#deleteEmployeeModal").css("display", "none");
+        });
+    });
+</script>
 
 <script>
     $(document).ready(function() {

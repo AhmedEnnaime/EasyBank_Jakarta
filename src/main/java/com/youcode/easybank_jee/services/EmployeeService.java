@@ -42,11 +42,11 @@ public class EmployeeService {
         return employeeDao.getAll();
     }
 
-    public Employee updateEmployee(Integer id, Employee employee) throws Exception {
+    public void updateEmployee(Integer id, Employee employee) throws Exception {
         if (employeeDao.findByID(id).isEmpty() || employee == null) {
             throw new Exception("Employee cannot be null check out again if the id is valid");
         }else {
-            return employeeDao.update(id, employee).get();
+            employeeDao.update(id, employee).get();
         }
     }
 }

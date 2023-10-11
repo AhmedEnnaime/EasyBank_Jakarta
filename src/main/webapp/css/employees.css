@@ -231,3 +231,39 @@ input[type="email"] {
     max-width: 300px;
     background-color: #f2f2f2;
 }
+
+.delete-modal {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.delete-modal h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.delete-modal p {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.cancel-button {
+    background-color: #ccc;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: #d9534f;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
