@@ -24,15 +24,14 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public Optional<Client> create(Client client) {
-        String insertSQL = "INSERT INTO clients (firstName, lastName, birthDate, phone, address, employeeMatricule) " +
-                "VALUES (?, ?, ?, ?, ?, ?) RETURNING code";
+        String insertSQL = "INSERT INTO clients (firstName, lastName, birthDate, phone, address) " +
+                "VALUES (?, ?, ?, ?, ?) RETURNING code";
         try (PreparedStatement preparedStatement = conn.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, client.getFirstName());
             preparedStatement.setString(2, client.getLastName());
             preparedStatement.setDate(3, java.sql.Date.valueOf(client.getBirthDate()));
             preparedStatement.setString(4, client.getPhone());
             preparedStatement.setString(5, client.getAddress());
-            preparedStatement.setInt(6, client.getEmployee().getMatricule());
 
             int affectedRows = preparedStatement.executeUpdate();
 

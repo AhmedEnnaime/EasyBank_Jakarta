@@ -15,7 +15,5 @@ CREATE TABLE clients (
                          lastName VARCHAR(255),
                          birthDate DATE,
                          phone VARCHAR(255),
-                         address VARCHAR(255),
-                         employeeMatricule INT,
-                         FOREIGN KEY (employeeMatricule) REFERENCES employees(matricule)
+                         address VARCHAR(255)
 );

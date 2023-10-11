@@ -13,11 +13,11 @@ public class ClientService {
     @Inject
     private ClientDaoImpl clientDao;
 
-    public Client createClient(Client client) throws Exception {
+    public void createClient(Client client) throws Exception {
         if (client == null) {
             throw new Exception("Client cannot be null");
         }else {
-            return clientDao.create(client).get();
+            clientDao.create(client).get();
         }
     }
 

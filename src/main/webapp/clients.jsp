@@ -19,8 +19,8 @@
         <img src="./img/icon.png" alt="Bankist logo" class="nav__logo"
              id="logo" data-version-number="3.0" />
         <ul class="nav__links">
-            <li class="nav__item"><a class="nav__link" href="#">Clients</a></li>
-            <li class="nav__item"><a class="nav__link" href="#">Employees</a></li>
+            <li class="nav__item"><a class="nav__link" href="${pageContext.servletContext.contextPath}/clients">Clients</a></li>
+            <li class="nav__item"><a class="nav__link" href="${pageContext.servletContext.contextPath}/employees">Employees</a></li>
             <li class="nav__item">
                 <a class="nav__link nav__link--btn btn--show-modal" href="#">Open account</a>
             </li>
@@ -63,9 +63,80 @@
     </table>
 </div>
 
+<div id="clientModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+            <h2>Add Client</h2>
+        <form action="${pageContext.request.contextPath}/clients?action=insert" method="POST">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required><br>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required><br>
+
+            <label for="birthdate">Birthdate:</label>
+            <input type="date" id="birthdate" name="birthdate" required><br>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required><br>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required><br>
+
+            <div class="form-group">
+                <button type="submit" name="action" class="submit-button">Add Client</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="updateClientModal" class="modal">
+    <div class="modal-content">
+        <span class="close-update">&times;</span>
+        <h2>Update Client</h2>
+        <form action="${pageContext.request.contextPath}/clients?action=update" method="POST">
+
+            <input type="hidden" id="updateClientId" name="clientId">
+
+            <label for="updateFirstName">First Name:</label>
+            <input type="text" id="updateFirstName" name="firstName" required><br>
+
+            <label for="updateLastName">Last Name:</label>
+            <input type="text" id="updateLastName" name="lastName" required><br>
+
+            <label for="updateBirthdate">Birthdate:</label>
+            <input type="date" id="updateBirthdate" name="birthdate" required><br>
+
+            <label for="updatePhone">Phone:</label>
+            <input type="tel" id="updatePhone" name="phone" required><br>
+
+            <label for="updateAddress">Address:</label>
+            <input type="text" id="updateAddress" name="address" required><br>
+
+            <div class="form-group">
+                <button type="submit" name="action" class="submit-button">Update Client</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="deleteClientModal" class="modal">
+    <div class="modal-content delete-modal">
+        <h2>Delete Client</h2>
+        <p>Are you sure you want to delete this employee?</p>
+        <form action="${pageContext.request.contextPath}/clients?action=delete" method="POST">
+            <input type="hidden" id="deleteClientId" name="deleteClientId">
+            <div class="form-group">
+                <button type="submit" name="action" class="delete-button">Delete</button>
+                <button type="button" class="cancel-button">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <script>
     $(document).ready(function() {
-        // Show the delete modal when the "Delete" button is clicked
         $(".delete-button").click(function() {
             const row = $(this).closest("tr");
             const clientId = row.find("td:first").text();
@@ -73,12 +144,10 @@
             $("#deleteClientModal").css("display", "block");
         });
 
-        // Close the delete modal when the "Cancel" button is clicked
         $(".cancel-button").click(function() {
             $("#deleteClientModal").css("display", "none");
         });
 
-        // Filter the table based on the search input
         $("#clientSearch").on("input", function() {
             const searchText = $(this).val().toLowerCase();
             $(".content table tbody tr").each(function() {
@@ -91,23 +160,21 @@
             });
         });
 
-        // Show the "Add Client" modal when the "Add Client" button is clicked
         $(".add-button").click(function() {
+            console.log("Add Client button clicked");
             $("#clientModal").css("display", "block");
         });
 
-        // Close the "Add Client" modal when clicking the close button or outside the modal
         $(".close, .modal").click(function() {
             $("#clientModal").css("display", "none");
         });
 
-        // Prevent modal closing when clicking inside the modal
         $(".modal-content").click(function(event) {
             event.stopPropagation();
         });
 
-        // Show the "Update Client" modal when the "Update" button is clicked
         $(".update-button").click(function() {
+            console.log("update clicked")
             const row = $(this).closest("tr");
             const clientId = row.find("td:first").text();
             const firstName = row.find("td:nth-child(2)").text();
@@ -130,7 +197,6 @@
             $("#updateClientModal").css("display", "block");
         });
 
-        // Close the "Update Client" modal when clicking the close button or outside the modal
         $(".close-update, #updateClientModal").click(function() {
             $("#updateClientModal").css("display", "none");
         });
