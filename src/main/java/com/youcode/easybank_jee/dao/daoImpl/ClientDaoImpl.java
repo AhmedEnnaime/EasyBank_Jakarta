@@ -32,7 +32,7 @@ public class ClientDaoImpl implements ClientDao {
             preparedStatement.setDate(3, java.sql.Date.valueOf(client.getBirthDate()));
             preparedStatement.setString(4, client.getPhone());
             preparedStatement.setString(5, client.getAddress());
-            preparedStatement.setInt(6, client.get_employee().getMatricule());
+            preparedStatement.setInt(6, client.getEmployee().getMatricule());
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -43,7 +43,7 @@ public class ClientDaoImpl implements ClientDao {
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     int code = generatedKeys.getInt(1);
-                    client.set_code(code);
+                    client.setCode(code);
                 } else {
                     throw new ClientException("Creating client failed, no ID obtained.");
                 }
@@ -109,7 +109,7 @@ public class ClientDaoImpl implements ClientDao {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     Client client = new Client();
-                    client.set_code(resultSet.getInt("code"));
+                    client.setCode(resultSet.getInt("code"));
                     client.setFirstName(resultSet.getString("firstName"));
                     client.setLastName(resultSet.getString("lastName"));
                     client.setBirthDate(resultSet.getDate("birthDate").toLocalDate());
@@ -138,7 +138,7 @@ public class ClientDaoImpl implements ClientDao {
 
             while (resultSet.next()) {
                 Client client = new Client();
-                client.set_code(resultSet.getInt("code"));
+                client.setCode(resultSet.getInt("code"));
                 client.setFirstName(resultSet.getString("firstName"));
                 client.setLastName(resultSet.getString("lastName"));
                 client.setBirthDate(resultSet.getDate("birthDate").toLocalDate());

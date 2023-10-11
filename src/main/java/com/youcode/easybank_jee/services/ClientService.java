@@ -2,16 +2,16 @@ package com.youcode.easybank_jee.services;
 
 import com.youcode.easybank_jee.dao.daoImpl.ClientDaoImpl;
 import com.youcode.easybank_jee.entities.Client;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.List;
 
+@ApplicationScoped
 public class ClientService {
 
+    @Inject
     private ClientDaoImpl clientDao;
-
-    public ClientService(ClientDaoImpl clientDao) {
-        this.clientDao = clientDao;
-    }
 
     public Client createClient(Client client) throws Exception {
         if (client == null) {

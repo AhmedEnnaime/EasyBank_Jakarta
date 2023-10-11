@@ -10,14 +10,14 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Client extends Person{
-    private int _code;
+    private int code;
 
-    private Employee _employee;
+    private Employee employee;
 
     public Client(String lastName, String firstName, LocalDate birthDate, String phone, String address, int code, Employee employee) {
         super(lastName, firstName, birthDate, phone, address);
-        this._code = code;
-        this._employee = employee;
+        this.code = code;
+        this.employee = employee;
     }
 
     public Client(String lastName, String firstName, LocalDate birthDate, String phone, String address) {
@@ -26,6 +26,6 @@ public class Client extends Person{
 
     public Client(String lastName, String firstName, LocalDate birthDate, String phone, String address, Employee employee) {
         super(lastName, firstName, birthDate, phone, address);
-        this._employee = employee;
+        this.employee = employee;
     }
 }
