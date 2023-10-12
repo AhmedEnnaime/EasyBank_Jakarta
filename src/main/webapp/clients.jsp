@@ -124,7 +124,7 @@
 <div id="deleteClientModal" class="modal">
     <div class="modal-content delete-modal">
         <h2>Delete Client</h2>
-        <p>Are you sure you want to delete this employee?</p>
+        <p>Are you sure you want to delete this client ?</p>
         <form action="${pageContext.request.contextPath}/clients?action=delete" method="POST">
             <input type="hidden" id="deleteClientId" name="deleteClientId">
             <div class="form-group">
@@ -137,61 +137,85 @@
 
 
 <script>
-    $(document).ready(function() {
-        $(".delete-button").click(function() {
-            const row = $(this).closest("tr");
-            const clientId = row.find("td:first").text();
-            $("#deleteClientId").val(clientId);
-            $("#deleteClientModal").css("display", "block");
-        });
+    document.addEventListener("DOMContentLoaded", function() {
+        const deleteButtons = document.querySelectorAll(".delete-button");
+        const cancelButtons = document.querySelectorAll(".cancel-button");
+        const addClientButton = document.querySelector(".add-button");
+        const closeButtons = document.querySelectorAll(".close, .modal");
+        const modalContents = document.querySelectorAll(".modal-content");
+        const updateButtons = document.querySelectorAll(".update-button");
+        const closeUpdateButtons = document.querySelectorAll(".close-update, #updateClientModal");
 
-        $(".cancel-button").click(function() {
-            $("#deleteClientModal").css("display", "none");
-        });
+        const deleteClientModal = document.getElementById("deleteClientModal");
+        const deleteClientIdInput = document.getElementById("deleteClientId");
+        const clientModal = document.getElementById("clientModal");
+        const updateClientModal = document.getElementById("updateClientModal");
 
-        $(".add-button").click(function() {
+        addClientButton.addEventListener("click", function() {
             console.log("Add Client button clicked");
-            $("#clientModal").css("display", "block");
+            clientModal.style.display = "block";
         });
 
-        $(".close, .modal").click(function() {
-            $("#clientModal").css("display", "none");
+        closeButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                clientModal.style.display = "none";
+            });
         });
 
-        $(".modal-content").click(function(event) {
-            event.stopPropagation();
+        modalContents.forEach(function(content) {
+            content.addEventListener("click", function(event) {
+                event.stopPropagation();
+            });
         });
 
-        $(".update-button").click(function() {
-            console.log("update clicked")
-            const row = $(this).closest("tr");
-            const clientId = row.find("td:first").text();
-            const firstName = row.find("td:nth-child(2)").text();
-            const lastName = row.find("td:nth-child(3)").text();
-            const birthdate = row.find("td:nth-child(4)").text();
-            const phone = row.find("td:nth-child(5)").text();
-            const address = row.find("td:nth-child(6)").text();
-            const email = row.find("td:nth-child(7)").text();
-            const code = row.find("td:nth-child(8)").text();
+        updateButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                console.log("update clicked");
+                const row = button.closest("tr");
+                const clientId = row.querySelector("td:first-child").textContent;
+                const firstName = row.querySelector("td:nth-child(2)").textContent;
+                const lastName = row.querySelector("td:nth-child(3)").textContent;
+                const birthdate = row.querySelector("td:nth-child(4)").textContent;
+                const phone = row.querySelector("td:nth-child(5)").textContent;
+                const address = row.querySelector("td:nth-child(6)").textContent;
 
-            $("#updateClientId").val(clientId);
-            $("#updateFirstName").val(firstName);
-            $("#updateLastName").val(lastName);
-            $("#updateBirthdate").val(birthdate);
-            $("#updatePhone").val(phone);
-            $("#updateAddress").val(address);
-            $("#updateEmail").val(email);
-            $("#updateCode").val(code);
+                const updateClientIdInput = document.getElementById("updateClientId");
+                const updateFirstNameInput = document.getElementById("updateFirstName");
+                const updateLastNameInput = document.getElementById("updateLastName");
+                const updateBirthdateInput = document.getElementById("updateBirthdate");
+                const updatePhoneInput = document.getElementById("updatePhone");
+                const updateAddressInput = document.getElementById("updateAddress");
 
-            $("#updateClientModal").css("display", "block");
+                updateClientIdInput.value = clientId;
+                updateFirstNameInput.value = firstName;
+                updateLastNameInput.value = lastName;
+                updateBirthdateInput.value = birthdate;
+                updatePhoneInput.value = phone;
+                updateAddressInput.value = address;
+
+                updateClientModal.style.display = "block";
+            });
         });
 
-        $(".close-update, #updateClientModal").click(function() {
-            $("#updateClientModal").css("display", "none");
+        closeUpdateButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                updateClientModal.style.display = "none";
+            });
         });
 
-        $(".modal-content").click(function(event) {
-            event.stopPropagation();
+        deleteButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                const row = button.closest("tr");
+                const clientId = row.querySelector("td:first-child").textContent;
+                deleteClientIdInput.value = clientId;
+                deleteClientModal.style.display = "block";
+            });
+        });
+
+        cancelButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                deleteClientModal.style.display = "none";
+            });
         });
     });
 </script>
