@@ -74,10 +74,6 @@
 
         </tbody>
     </table>
-
-    <c:if test="${not empty message}">
-        <p>${message}</p>
-    </c:if>
 </div>
 
 <div id="employeeModal" class="modal">

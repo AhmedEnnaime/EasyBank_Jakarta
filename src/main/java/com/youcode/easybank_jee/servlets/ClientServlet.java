@@ -101,6 +101,7 @@ public class ClientServlet extends HttpServlet {
                     request.getRequestDispatcher("/clients.jsp").forward(request, response);
                 } else {
                     request.setAttribute("message", "No client found with the given code.");
+                    request.getRequestDispatcher("/clients.jsp").forward(request, response);
                 }
             } catch (NumberFormatException e) {
                 request.setAttribute("message", "Invalid code format.");

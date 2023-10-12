@@ -34,7 +34,7 @@ public class EmployeeService {
         if (id.toString().isEmpty() || id <= 0) {
             throw new Exception("Employee id cannot be empty or less than zero");
         }else {
-            return employeeDao.findByID(id).get();
+            return employeeDao.findByID(id).orElse(null);
         }
     }
 

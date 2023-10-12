@@ -105,6 +105,7 @@ public class EmployeeServlet extends HttpServlet {
                     request.getRequestDispatcher("/employees.jsp").forward(request, response);
                 } else {
                     request.setAttribute("message", "No employee found with the given matricule.");
+                    request.getRequestDispatcher("/employees.jsp").forward(request, response);
                 }
             } catch (NumberFormatException e) {
                 request.setAttribute("message", "Invalid matricule format.");

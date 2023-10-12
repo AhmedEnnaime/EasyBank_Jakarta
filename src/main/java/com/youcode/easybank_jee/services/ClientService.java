@@ -33,7 +33,7 @@ public class ClientService {
         if (id.toString().isEmpty() || id <= 0) {
             throw new Exception("Client id cannot be empty or less than zero");
         }else {
-            return clientDao.findByID(id).get();
+            return clientDao.findByID(id).orElse(null);
         }
     }
 
