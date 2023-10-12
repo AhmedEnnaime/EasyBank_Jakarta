@@ -267,3 +267,11 @@ input[type="email"] {
     border: none;
     cursor: pointer;
 }
+
+.update-button {
+    background-color: #4f66d9;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}

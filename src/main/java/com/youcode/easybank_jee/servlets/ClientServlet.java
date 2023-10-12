@@ -10,6 +10,7 @@ import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ClientServlet", value = "/clients")
@@ -86,6 +87,29 @@ public class ClientServlet extends HttpServlet {
         request.setAttribute("clients", clients);
         request.getRequestDispatcher("/clients.jsp").forward(request, response);
     }
+
+    private void findClientByID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String codeParam = request.getParameter("code");
+        if (codeParam != null && !codeParam.isEmpty()) {
+            try {
+                int code = Integer.parseInt(codeParam);
+                Client client = clientService.findClientByID(code);
+                if (client != null) {
+                    List<Client> clients = new ArrayList<>();
+                    clients.add(client);
+                    request.setAttribute("clients", clients);
+                    request.getRequestDispatcher("/clients.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("message", "No client found with the given code.");
+                }
+            } catch (NumberFormatException e) {
+                request.setAttribute("message", "Invalid code format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         getClients(request, response);
@@ -104,6 +128,9 @@ public class ClientServlet extends HttpServlet {
                 break;
             case "delete":
                 deleteClient(request, response);
+                break;
+            case "search":
+                findClientByID(request, response);
                 break;
 
         }

@@ -30,7 +30,9 @@
 <div class="content">
     <button class="add-button">Add Client</button>
     <div class="search-container">
-        <input type="search" id="clientSearch" placeholder="Search by last name...">
+        <form action="${pageContext.request.contextPath}/clients?action=search" method="POST">
+            <input type="search" id="clientSearch" name="code" placeholder="Search by code...">
+        </form>
     </div>
     <table>
         <thead>
@@ -41,7 +43,6 @@
             <th>Birthdate</th>
             <th>Phone</th>
             <th>Address</th>
-            <th>Employee</th>
         </tr>
         </thead>
         <tbody>
@@ -148,18 +149,6 @@
             $("#deleteClientModal").css("display", "none");
         });
 
-        $("#clientSearch").on("input", function() {
-            const searchText = $(this).val().toLowerCase();
-            $(".content table tbody tr").each(function() {
-                const lastName = $(this).find("td:nth-child(3)").text().toLowerCase();
-                if (lastName.indexOf(searchText) !== -1) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-        });
-
         $(".add-button").click(function() {
             console.log("Add Client button clicked");
             $("#clientModal").css("display", "block");
@@ -206,8 +195,6 @@
         });
     });
 </script>
-
-
 
 </body>
 </html>

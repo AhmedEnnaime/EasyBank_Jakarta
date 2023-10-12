@@ -34,8 +34,9 @@
 <div class="content">
     <button class="add-button">Add employee</button>
     <div class="search-container">
-        <input type="search" id="employeeSearch" placeholder="Search by last name...">
-
+        <form action="${pageContext.request.contextPath}/employees?action=search" method="POST">
+            <input type="search" id="employeeSearch" name="matricule" placeholder="Search by matricule...">
+        </form>
     </div>
     <table>
         <thead>
@@ -71,6 +72,10 @@
 
         </tbody>
     </table>
+
+    <c:if test="${not empty message}">
+        <p>${message}</p>
+    </c:if>
 </div>
 
 <div id="employeeModal" class="modal">
@@ -176,21 +181,21 @@
     });
 </script>
 
-<script>
-    $(document).ready(function() {
-        $("#employeeSearch").on("input", function() {
-            const searchText = $(this).val().toLowerCase();
-            $(".content table tbody tr").each(function() {
-                const lastName = $(this).find("td:nth-child(3)").text().toLowerCase();
-                if (lastName.indexOf(searchText) !== -1) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-        });
-    });
-</script>
+<%--<script>--%>
+<%--    $(document).ready(function() {--%>
+<%--        $("#employeeSearch").on("input", function() {--%>
+<%--            const searchText = $(this).val().toLowerCase();--%>
+<%--            $(".content table tbody tr").each(function() {--%>
+<%--                const lastName = $(this).find("td:nth-child(3)").text().toLowerCase();--%>
+<%--                if (lastName.indexOf(searchText) !== -1) {--%>
+<%--                    $(this).show();--%>
+<%--                } else {--%>
+<%--                    $(this).hide();--%>
+<%--                }--%>
+<%--            });--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
 
 
 <script>

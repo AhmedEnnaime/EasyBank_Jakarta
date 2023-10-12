@@ -9,6 +9,7 @@ import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "EmployeeServlet", value = "/employees")
@@ -93,10 +94,33 @@ public class EmployeeServlet extends HttpServlet {
         }
     }
 
+    private void findEmployeeByID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String matriculeParam = request.getParameter("matricule");
+        if (matriculeParam != null && !matriculeParam.isEmpty()) {
+            try {
+                int matricule = Integer.parseInt(matriculeParam);
+                Employee employee = employeeService.findEmployeeByID(matricule);
+                if (employee != null) {
+                    List<Employee> employees = new ArrayList<>();
+                    employees.add(employee);
+                    request.setAttribute("employees", employees);
+                    request.getRequestDispatcher("/employees.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("message", "No employee found with the given matricule.");
+                }
+            } catch (NumberFormatException e) {
+                request.setAttribute("message", "Invalid matricule format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       getEmployees(request, response);
+        getEmployees(request, response);
     }
 
     @Override
@@ -112,6 +136,9 @@ public class EmployeeServlet extends HttpServlet {
                 break;
             case "delete" :
                 deleteEmployee(request, response);
+                break;
+            case "search" :
+                findEmployeeByID(request, response);
                 break;
         }
 
