@@ -12,6 +12,8 @@
         <img src="./img/icon.png" alt="Bankist logo" class="nav__logo"
              id="logo" data-version-number="3.0" />
         <ul class="nav__links">
+            <li class="nav__item"><a class="nav__link" href="${pageContext.servletContext.contextPath}">Home</a>
+            </li>
             <li class="nav__item"><a class="nav__link" href="${pageContext.servletContext.contextPath}/clients">Clients</a>
             </li>
             <li class="nav__item"><a class="nav__link" href="${pageContext.servletContext.contextPath}/employees">Employees</a>
