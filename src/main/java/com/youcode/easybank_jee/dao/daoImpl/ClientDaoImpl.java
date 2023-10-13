@@ -31,4 +31,9 @@ public class ClientDaoImpl implements ClientDao {
     public boolean delete(Integer id) {
         return false;
     }
+
+    @Override
+    public List<Client> findByAnyAttribute(String attribute) {
+        return null;
+    }
 }

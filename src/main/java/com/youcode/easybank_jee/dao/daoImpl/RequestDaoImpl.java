@@ -1,30 +1,30 @@
 package com.youcode.easybank_jee.dao.daoImpl;
 
-import com.youcode.easybank_jee.dao.EmployeeDao;
+import com.youcode.easybank_jee.dao.RequestDao;
 import com.youcode.easybank_jee.entities.Client;
-import com.youcode.easybank_jee.entities.Employee;
+import com.youcode.easybank_jee.entities.Request;
 
 import java.util.List;
 import java.util.Optional;
 
-public class EmployeeDaoImpl implements EmployeeDao {
+public class RequestDaoImpl implements RequestDao {
     @Override
-    public Optional<Employee> create(Employee employee) {
+    public Optional<Request> create(Request request) {
         return Optional.empty();
     }
 
     @Override
-    public Optional<Employee> update(Integer id, Employee employee) {
+    public Optional<Request> update(Integer id, Request request) {
         return Optional.empty();
     }
 
     @Override
-    public Optional<Employee> findByID(Integer id) {
+    public Optional<Request> findByID(Integer id) {
         return Optional.empty();
     }
 
     @Override
-    public List<Employee> getAll() {
+    public List<Request> getAll() {
         return null;
     }
 
@@ -34,7 +34,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public List<Client> findByAnyAttribute(String attribute) {
-        return null;
+    public Optional<Request> findByClient(Client client) {
+        return Optional.empty();
     }
 }
