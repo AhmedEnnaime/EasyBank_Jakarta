@@ -1,5 +1,6 @@
 package com.youcode.easybank_jee.entities;
 
+import jakarta.ejb.Stateful;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

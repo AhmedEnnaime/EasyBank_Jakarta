@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/MyDB" auth="Container" type="javax.sql.DataSource"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5433/easybank"
+              username="postgres" password="3ea14367A4" maxTotal="20" maxIdle="10" maxWaitMillis="-1" />
+</Context>
