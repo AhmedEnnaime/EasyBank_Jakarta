@@ -1,6 +1,5 @@
 package com.youcode.easybank_jee.entities;
 
-import jakarta.ejb.Stateful;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +23,10 @@ public class Employee extends Person implements Serializable {
 
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name = "agency_code")
+    private Agency agency;
+
     public Employee(String lastName, String firstName, LocalDate birthDate, String phone, String address,
                     Long matricule, LocalDate recruitmentDate, String email) {
         super(lastName, firstName, birthDate, phone, address);
@@ -33,9 +36,10 @@ public class Employee extends Person implements Serializable {
     }
 
     public Employee(String lastName, String firstName, LocalDate birthDate, String phone, String address,
-                    LocalDate recruitmentDate, String email) {
+                    LocalDate recruitmentDate, String email, Agency agency) {
         super(lastName, firstName, birthDate, phone, address);
         this.recruitmentDate = recruitmentDate;
         this.email = email;
+        this.agency = agency;
     }
 }
