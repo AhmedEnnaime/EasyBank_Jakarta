@@ -6,7 +6,7 @@ import java.util.Optional;
 public interface IData<Entity, Identifier> {
     public Optional<Entity> create(Entity entity);
 
-    public Optional<Entity> update(Identifier id, Entity entity);
+    public Optional<Entity> update(Entity entity);
 
     public Optional<Entity> findByID(Identifier id);
 

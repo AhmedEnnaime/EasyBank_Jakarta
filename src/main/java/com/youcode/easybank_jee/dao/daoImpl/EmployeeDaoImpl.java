@@ -22,7 +22,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public Optional<Employee> update(Integer id, Employee employee) {
+    public Optional<Employee> update(Employee employee) {
         return Optional.empty();
     }
 

@@ -42,11 +42,11 @@ public class EmployeeService {
         return employeeDao.getAll();
     }
 
-    public void updateEmployee(Integer id, Employee employee) throws Exception {
-        if (employeeDao.findByID(id).isEmpty() || employee == null) {
+    public void updateEmployee(Employee employee) throws Exception {
+        if (employeeDao.findByID(employee.getMatricule()).isEmpty()) {
             throw new Exception("Employee cannot be null check out again if the id is valid");
         }else {
-            employeeDao.update(id, employee).get();
+            employeeDao.update(employee).get();
         }
     }
 }

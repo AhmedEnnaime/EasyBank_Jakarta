@@ -41,11 +41,11 @@ public class ClientService {
         return clientDao.getAll();
     }
 
-    public Client updateClient(Integer id, Client client) throws Exception {
-        if (clientDao.findByID(id).isEmpty() || client == null) {
+    public Client updateClient(Client client) throws Exception {
+        if (clientDao.findByID(client.getCode()).isEmpty()) {
             throw new Exception("Client cannot be null check out again if the id is valid");
         }else {
-            return clientDao.update(id, client).get();
+            return clientDao.update(client).get();
         }
     }
 }

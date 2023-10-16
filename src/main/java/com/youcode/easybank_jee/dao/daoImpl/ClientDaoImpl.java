@@ -15,7 +15,7 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
-    public Optional<Client> update(Integer id, Client client) {
+    public Optional<Client> update(Client client) {
         return Optional.empty();
     }
 
