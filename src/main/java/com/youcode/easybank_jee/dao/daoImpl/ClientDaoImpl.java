@@ -2,13 +2,23 @@ package com.youcode.easybank_jee.dao.daoImpl;
 
 import com.youcode.easybank_jee.dao.ClientDao;
 import com.youcode.easybank_jee.entities.Client;
+import com.youcode.easybank_jee.utils.JPAUtil;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
 public class ClientDaoImpl implements ClientDao {
+
+    private final EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+
+    public ClientDaoImpl() {
+        em.getTransaction().begin();
+    }
+
     @Override
     public Optional<Client> create(Client client) {
         return Optional.empty();

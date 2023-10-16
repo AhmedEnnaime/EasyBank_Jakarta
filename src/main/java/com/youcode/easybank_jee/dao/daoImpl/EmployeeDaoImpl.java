@@ -8,13 +8,19 @@ import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
-@ApplicationScoped
 public class EmployeeDaoImpl implements EmployeeDao {
+
+    private final EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+
+    public EmployeeDaoImpl(EntityManager em) {
+        em.getTransaction().begin();
+    }
 
     @Override
     public Optional<Employee> create(Employee employee) {
