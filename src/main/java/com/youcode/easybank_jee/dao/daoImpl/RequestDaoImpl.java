@@ -16,7 +16,7 @@ public class RequestDaoImpl implements RequestDao {
     }
 
     @Override
-    public Optional<Request> update(Integer id, Request request) {
+    public Optional<Request> update(Request request) {
         return Optional.empty();
     }
 

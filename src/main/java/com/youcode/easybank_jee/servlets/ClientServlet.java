@@ -59,6 +59,7 @@ public class ClientServlet extends HttpServlet {
         LocalDate birthDate = LocalDate.parse(birthDateStr);
 
         Client updatedClient = new Client();
+        updatedClient.setCode(id);
         updatedClient.setFirstName(firstName);
         updatedClient.setLastName(lastName);
         updatedClient.setBirthDate(birthDate);
@@ -66,7 +67,7 @@ public class ClientServlet extends HttpServlet {
         updatedClient.setAddress(address);
 
         try {
-            clientService.updateClient(id, updatedClient);
+            clientService.updateClient(updatedClient);
             response.sendRedirect(request.getContextPath() + "/clients");
         } catch (Exception e) {
             e.printStackTrace();

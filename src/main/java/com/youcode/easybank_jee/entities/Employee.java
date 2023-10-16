@@ -18,7 +18,7 @@ public class Employee extends Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long matricule;
+    private Integer matricule;
 
     private LocalDate recruitmentDate;
 
@@ -32,7 +32,7 @@ public class Employee extends Person implements Serializable {
     private Agency agency;
 
     public Employee(String lastName, String firstName, LocalDate birthDate, String phone, String address,
-                    Long matricule, LocalDate recruitmentDate, String email, List<Client> clients) {
+                    Integer matricule, LocalDate recruitmentDate, String email, List<Client> clients) {
         super(lastName, firstName, birthDate, phone, address);
         this.matricule = matricule;
         this.recruitmentDate = recruitmentDate;

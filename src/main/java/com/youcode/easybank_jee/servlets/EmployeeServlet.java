@@ -62,6 +62,7 @@ public class EmployeeServlet extends HttpServlet {
         LocalDate recruitmentDate = LocalDate.parse(recruitmentDateStr);
 
         Employee updatedEmployee = new Employee();
+        updatedEmployee.setMatricule(id);
         updatedEmployee.setFirstName(firstName);
         updatedEmployee.setLastName(lastName);
         updatedEmployee.setBirthDate(birthDate);
@@ -71,7 +72,7 @@ public class EmployeeServlet extends HttpServlet {
         updatedEmployee.setRecruitmentDate(recruitmentDate);
 
         try {
-            employeeService.updateEmployee(id, updatedEmployee);
+            employeeService.updateEmployee(updatedEmployee);
             response.sendRedirect(request.getContextPath() + "/employees");
         } catch (Exception e) {
             e.printStackTrace();

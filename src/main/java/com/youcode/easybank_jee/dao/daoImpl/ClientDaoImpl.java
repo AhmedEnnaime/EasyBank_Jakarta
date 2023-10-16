@@ -38,9 +38,36 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
-    public Optional<Client> update(Integer id, Client client) {
-        return Optional.empty();
+    public Optional<Client> update(Client client) {
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            Client existingClient = em.find(Client.class, client.getCode());
+
+            if (existingClient != null) {
+                existingClient.setLastName(client.getLastName());
+                existingClient.setFirstName(client.getFirstName());
+                existingClient.setBirthDate(client.getBirthDate());
+                existingClient.setPhone(client.getPhone());
+                existingClient.setAddress(client.getAddress());
+                existingClient.setEmployee(client.getEmployee());
+
+                em.merge(existingClient);
+                transaction.commit();
+                return Optional.of(existingClient);
+            } else {
+                transaction.rollback();
+                return Optional.empty();
+            }
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
+
 
     @Override
     public Optional<Client> findByID(Integer id) {
