@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -23,16 +24,20 @@ public class Employee extends Person implements Serializable {
 
     private String email;
 
+    @OneToMany(mappedBy = "employee")
+    private List<Client> clients;
+
     @ManyToOne
     @JoinColumn(name = "agency_code")
     private Agency agency;
 
     public Employee(String lastName, String firstName, LocalDate birthDate, String phone, String address,
-                    Long matricule, LocalDate recruitmentDate, String email) {
+                    Long matricule, LocalDate recruitmentDate, String email, List<Client> clients) {
         super(lastName, firstName, birthDate, phone, address);
         this.matricule = matricule;
         this.recruitmentDate = recruitmentDate;
         this.email = email;
+        this.clients = clients;
     }
 
     public Employee(String lastName, String firstName, LocalDate birthDate, String phone, String address,

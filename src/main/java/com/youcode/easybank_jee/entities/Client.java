@@ -19,6 +19,7 @@ public class Client extends Person implements Serializable {
     private int code;
 
     @ManyToOne
+    @JoinColumn(name = "employeeMatricule")
     private Employee employee;
 
     public Client(String lastName, String firstName, LocalDate birthDate, String phone, String address, int code, Employee employee) {
