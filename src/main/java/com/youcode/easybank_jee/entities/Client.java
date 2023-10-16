@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,6 +22,9 @@ public class Client extends Person implements Serializable {
     @ManyToOne
     @JoinColumn(name = "employeeMatricule")
     private Employee employee;
+
+    @OneToMany(mappedBy = "client")
+    private List<Request> requests;
 
     public Client(String lastName, String firstName, LocalDate birthDate, String phone, String address, int code, Employee employee) {
         super(lastName, firstName, birthDate, phone, address);

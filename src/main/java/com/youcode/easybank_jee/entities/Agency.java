@@ -27,6 +27,9 @@ public class Agency {
     @OneToMany(mappedBy = "agency")
     private List<Employee> employees;
 
+    @OneToMany(mappedBy = "agency")
+    private List<Request> requests;
+
     public Agency(String name, String address, String phone) {
         this.name = name;
         this.address = address;
