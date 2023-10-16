@@ -69,7 +69,25 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public boolean delete(Integer id) {
-        return false;
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            Client client = em.find(Client.class, id);
+            if (client != null) {
+                em.remove(client);
+                transaction.commit();
+                return true;
+            } else {
+                transaction.rollback();
+                return false;
+            }
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
