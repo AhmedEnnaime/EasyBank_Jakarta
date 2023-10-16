@@ -2,10 +2,12 @@ package com.youcode.easybank_jee.dao.daoImpl;
 
 import com.youcode.easybank_jee.dao.ClientDao;
 import com.youcode.easybank_jee.entities.Client;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
 import java.util.Optional;
 
+@ApplicationScoped
 public class ClientDaoImpl implements ClientDao {
     @Override
     public Optional<Client> create(Client client) {

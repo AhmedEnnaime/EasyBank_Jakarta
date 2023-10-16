@@ -3,6 +3,7 @@ package com.youcode.easybank_jee.dao.daoImpl;
 import com.youcode.easybank_jee.dao.EmployeeDao;
 import com.youcode.easybank_jee.entities.Client;
 import com.youcode.easybank_jee.entities.Employee;
+import com.youcode.easybank_jee.utils.JPAUtil;
 import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -12,11 +13,8 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Stateless
+@ApplicationScoped
 public class EmployeeDaoImpl implements EmployeeDao {
-
-    @PersistenceContext
-    private EntityManager em;
 
     @Override
     public Optional<Employee> create(Employee employee) {
@@ -35,8 +33,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public List<Employee> getAll() {
-        String jpql = "SELECT e FROM Employee e";
-        return em.createQuery(jpql, Employee.class).getResultList();
+       return null;
     }
 
     @Override

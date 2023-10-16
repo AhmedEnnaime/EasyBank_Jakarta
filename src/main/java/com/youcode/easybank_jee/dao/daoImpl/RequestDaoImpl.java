@@ -3,10 +3,12 @@ package com.youcode.easybank_jee.dao.daoImpl;
 import com.youcode.easybank_jee.dao.RequestDao;
 import com.youcode.easybank_jee.entities.Client;
 import com.youcode.easybank_jee.entities.Request;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
 import java.util.Optional;
 
+@ApplicationScoped
 public class RequestDaoImpl implements RequestDao {
     @Override
     public Optional<Request> create(Request request) {
