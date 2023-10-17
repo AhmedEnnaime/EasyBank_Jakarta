@@ -10,7 +10,6 @@
 <head>
     <title>EasyBank | When Banking meets Minimalist</title>
     <link rel="stylesheet" href="./css/simulation.css" />
-    <script src="./js/simulation.js"></script>
 </head>
 <body>
 
@@ -82,6 +81,7 @@
 
 </div>
 
+<script src="./js/simulation.js"></script>
 
 </body>
 </html>

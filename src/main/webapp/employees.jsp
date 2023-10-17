@@ -11,7 +11,6 @@
 <head>
     <title>Employees</title>
     <link rel="stylesheet" href="./css/employees.css" />
-    <script src="./js/employees.js"></script>
 </head>
 <body>
 <header class="header">
@@ -158,5 +157,8 @@
         </form>
     </div>
 </div>
+
+<script src="./js/employees.js"></script>
+
 </body>
 </html>
