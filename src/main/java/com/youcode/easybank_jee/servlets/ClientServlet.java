@@ -3,6 +3,7 @@ package com.youcode.easybank_jee.servlets;
 import com.youcode.easybank_jee.entities.Client;
 import com.youcode.easybank_jee.entities.Employee;
 import com.youcode.easybank_jee.services.ClientService;
+import com.youcode.easybank_jee.services.EmployeeService;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,7 +20,10 @@ public class ClientServlet extends HttpServlet {
     @Inject
     private ClientService clientService;
 
-    private void insertClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Inject
+    private EmployeeService employeeService;
+
+    private void insertClient(HttpServletRequest request, HttpServletResponse response) throws Exception {
         System.out.println("INSERT");
         System.out.println(request.getParameter("birthdate"));
         String firstName = request.getParameter("firstName");
@@ -38,6 +42,17 @@ public class ClientServlet extends HttpServlet {
         client.setBirthDate(birthDate);
         client.setPhone(phone);
         client.setAddress(address);
+
+        int employeeMatricule = 1;
+        Employee employee = employeeService.findEmployeeByID(employeeMatricule);
+        client.setEmployee(employee);
+
+//        String employeeMatriculeStr = request.getParameter("employeeMatricule");
+//        if (employeeMatriculeStr != null && !employeeMatriculeStr.isEmpty()) {
+//            int employeeMatricule = Integer.parseInt(employeeMatriculeStr);
+//            Employee employee = employeeService.findEmployeeByID(employeeMatricule);
+//            client.setEmployee(employee);
+//        }
 
 
         try {
@@ -123,7 +138,11 @@ public class ClientServlet extends HttpServlet {
 
         switch (action) {
             case "insert":
-                insertClient(request, response);
+                try {
+                    insertClient(request, response);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "update":
                 updateClient(request, response);
