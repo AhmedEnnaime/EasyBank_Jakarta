@@ -48,7 +48,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public Optional<Employee> findByID(Integer id) {
-        return null;
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            Employee employee = em.find(Employee.class, id);
+            transaction.commit();
+
+            return Optional.ofNullable(employee);
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 
     @Override
