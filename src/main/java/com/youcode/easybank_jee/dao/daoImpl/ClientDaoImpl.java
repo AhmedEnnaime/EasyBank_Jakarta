@@ -16,10 +16,6 @@ public class ClientDaoImpl implements ClientDao {
 
     private final EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 
-//    public ClientDaoImpl() {
-//        em.getTransaction().begin();
-//    }
-
     @Override
     public Optional<Client> create(Client client) {
         EntityTransaction transaction = em.getTransaction();
