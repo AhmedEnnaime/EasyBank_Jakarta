@@ -22,7 +22,7 @@ public class DBConnection {
         if (conn == null) {
             String jdbcUrl = "jdbc:postgresql://localhost:5433/easybank";
             String username = "postgres";
-            String password = "3ea14367A4";
+            String password = "1999";
 
             try {
                 Class.forName("org.postgresql.Driver");

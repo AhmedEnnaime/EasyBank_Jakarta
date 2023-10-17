@@ -1,6 +1,6 @@
 FROM postgres:15
 
-ENV POSTGRES_PASSWORD=3ea14367A4
+ENV POSTGRES_PASSWORD=1999
 ENV POSTGRES_DB=easybank
 
 #WORKDIR /docker-entrypoint-initdb.d
