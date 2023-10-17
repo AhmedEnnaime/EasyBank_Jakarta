@@ -16,6 +16,10 @@ public class JPAUtil {
         return factory;
     }
 
+    public static void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+        factory = entityManagerFactory;
+    }
+
     public static void shutdown() {
         if (factory != null) {
             factory.close();
