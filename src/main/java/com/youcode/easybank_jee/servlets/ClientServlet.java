@@ -43,7 +43,7 @@ public class ClientServlet extends HttpServlet {
         client.setPhone(phone);
         client.setAddress(address);
 
-        int employeeMatricule = 1;
+        int employeeMatricule = Integer.parseInt(request.getParameter("employeeMatricule"));
         Employee employee = employeeService.findEmployeeByID(employeeMatricule);
         client.setEmployee(employee);
 
@@ -63,13 +63,14 @@ public class ClientServlet extends HttpServlet {
         }
     }
 
-    private void updateClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void updateClient(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int id = Integer.parseInt(request.getParameter("clientId"));
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String birthDateStr = request.getParameter("birthdate");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
+        int employeeMatricule = Integer.parseInt(request.getParameter("employeeMatricule")); // Add this line
 
         LocalDate birthDate = LocalDate.parse(birthDateStr);
 
@@ -80,6 +81,8 @@ public class ClientServlet extends HttpServlet {
         updatedClient.setBirthDate(birthDate);
         updatedClient.setPhone(phone);
         updatedClient.setAddress(address);
+        Employee employee = employeeService.findEmployeeByID(employeeMatricule);
+        updatedClient.setEmployee(employee);
 
         try {
             clientService.updateClient(updatedClient);
@@ -87,8 +90,8 @@ public class ClientServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
 
     private void deleteClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("deleteClientId"));
@@ -101,6 +104,10 @@ public class ClientServlet extends HttpServlet {
     private void getClients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Client> clients = clientService.getAllClients();
         request.setAttribute("clients", clients);
+
+        List<Employee> employees = employeeService.getAllEmployees();
+        request.setAttribute("employees", employees);
+
         request.getRequestDispatcher("/clients.jsp").forward(request, response);
     }
 
@@ -145,7 +152,11 @@ public class ClientServlet extends HttpServlet {
                 }
                 break;
             case "update":
-                updateClient(request, response);
+                try {
+                    updateClient(request, response);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 break;
             case "delete":
                 deleteClient(request, response);
