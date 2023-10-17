@@ -53,7 +53,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public List<Employee> getAll() {
-        return null;
+        TypedQuery<Employee> query = em.createQuery("SELECT c FROM Employee c", Employee.class);
+        return query.getResultList();
     }
 
     @Override
