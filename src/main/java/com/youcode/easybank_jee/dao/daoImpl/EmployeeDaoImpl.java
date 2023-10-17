@@ -43,7 +43,35 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public Optional<Employee> update(Employee employee) {
-        return null;
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            Employee existingEmployee = em.find(Employee.class, employee.getMatricule());
+
+            if (existingEmployee != null) {
+                existingEmployee.setLastName(employee.getLastName());
+                existingEmployee.setFirstName(employee.getFirstName());
+                existingEmployee.setBirthDate(employee.getBirthDate());
+                existingEmployee.setPhone(employee.getPhone());
+                existingEmployee.setAddress(employee.getAddress());
+                existingEmployee.setRecruitmentDate(employee.getRecruitmentDate());
+                existingEmployee.setEmail(employee.getEmail());
+
+
+                em.merge(existingEmployee);
+                transaction.commit();
+                return Optional.of(existingEmployee);
+            } else {
+                transaction.rollback();
+                return Optional.empty();
+            }
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 
     @Override
