@@ -72,8 +72,25 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public boolean delete(Integer id) {
-
-        return false;
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            Employee employee = em.find(Employee.class, id);
+            if (employee != null) {
+                em.remove(employee);
+                transaction.commit();
+                return true;
+            } else {
+                transaction.rollback();
+                return false;
+            }
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
