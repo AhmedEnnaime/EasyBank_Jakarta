@@ -5,6 +5,7 @@ import com.youcode.easybank_jee.entities.Client;
 import com.youcode.easybank_jee.utils.JPAUtil;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
 import java.util.List;
@@ -15,33 +16,101 @@ public class ClientDaoImpl implements ClientDao {
 
     private final EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 
-    public ClientDaoImpl() {
-        em.getTransaction().begin();
-    }
-
     @Override
     public Optional<Client> create(Client client) {
-        return Optional.empty();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            em.persist(client);
+            transaction.commit();
+            return Optional.of(client);
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 
     @Override
-    public Optional<Client> update(Integer id, Client client) {
-        return Optional.empty();
+    public Optional<Client> update(Client client) {
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            Client existingClient = em.find(Client.class, client.getCode());
+
+            if (existingClient != null) {
+                existingClient.setLastName(client.getLastName());
+                existingClient.setFirstName(client.getFirstName());
+                existingClient.setBirthDate(client.getBirthDate());
+                existingClient.setPhone(client.getPhone());
+                existingClient.setAddress(client.getAddress());
+                existingClient.setEmployee(client.getEmployee());
+
+                em.merge(existingClient);
+                transaction.commit();
+                return Optional.of(existingClient);
+            } else {
+                transaction.rollback();
+                return Optional.empty();
+            }
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
+
 
     @Override
     public Optional<Client> findByID(Integer id) {
-        return Optional.empty();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            Client client = em.find(Client.class, id);
+            transaction.commit();
+
+            return Optional.ofNullable(client);
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
+
 
     @Override
     public List<Client> getAll() {
-        return null;
+        TypedQuery<Client> query = em.createQuery("SELECT c FROM Client c", Client.class);
+        return query.getResultList();
     }
 
     @Override
     public boolean delete(Integer id) {
-        return false;
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            Client client = em.find(Client.class, id);
+            if (client != null) {
+                em.remove(client);
+                transaction.commit();
+                return true;
+            } else {
+                transaction.rollback();
+                return false;
+            }
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

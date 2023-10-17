@@ -30,6 +30,14 @@ public class Request {
 
     private Integer duration;
 
+    @ManyToOne
+    @JoinColumn(name = "client_code")
+    private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "agency_code")
+    private Agency agency;
+
     @Transient
     private Simulation simulation;
 
