@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>EasyBank | When Banking meets Minimalist</title>
@@ -108,22 +109,23 @@
 
             <div class="info-card hidden">
                 <div class="card-container">
-
                     <div class="input-group">
-                        <label class="input-label" for="client">Client</label>
-                        <select id="client">
-                            <option>Mousta</option>
-                            <option>Servoy</option>
-                            <option>Hamza</option>
+                        <label class="input-label" for="employee">Employee</label>
+                        <select id="employee">
+                            <option value="">Select employee</option>
+                            <c:forEach var="employee" items="${employees}">
+                                <option>${employee.firstName}  ${employee.lastName}</option>
+                            </c:forEach>
                         </select>
                     </div>
 
                     <div class="input-group">
-                        <label class="input-label" for="employee">Employee</label>
-                        <select id="employee">
-                            <option>Mousta</option>
-                            <option>Servoy</option>
-                            <option>Hamza</option>
+                        <label class="input-label" for="client">Client</label>
+                        <select id="client">
+                            <option value="">Select client</option>
+                            <c:forEach var="client" items="${clients}">
+                                <option>${client.firstName}  ${client.lastName}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>

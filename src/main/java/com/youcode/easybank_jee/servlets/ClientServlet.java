@@ -24,7 +24,6 @@ public class ClientServlet extends HttpServlet {
     private EmployeeService employeeService;
 
     private void insertClient(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("INSERT");
         System.out.println(request.getParameter("birthdate"));
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -46,14 +45,6 @@ public class ClientServlet extends HttpServlet {
         int employeeMatricule = Integer.parseInt(request.getParameter("employeeMatricule"));
         Employee employee = employeeService.findEmployeeByID(employeeMatricule);
         client.setEmployee(employee);
-
-//        String employeeMatriculeStr = request.getParameter("employeeMatricule");
-//        if (employeeMatriculeStr != null && !employeeMatriculeStr.isEmpty()) {
-//            int employeeMatricule = Integer.parseInt(employeeMatriculeStr);
-//            Employee employee = employeeService.findEmployeeByID(employeeMatricule);
-//            client.setEmployee(employee);
-//        }
-
 
         try {
             clientService.createClient(client);
