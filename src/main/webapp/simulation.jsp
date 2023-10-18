@@ -39,12 +39,12 @@
     <div class="container">
         <div class="sub-container">
             <div class="top-cards-container">
-                <div class="top-card">
+                <div class="active top-card simulation-top-card">
                     <span class="top-card-num">1</span>
                     <p class="top-card-text">Simulate my credit</p>
                 </div>
 
-                <div class="top-card">
+                <div class="top-card info-top-card">
                     <span class="top-card-num">2</span>
                     <p class="top-card-text">My informations</p>
                 </div>
@@ -95,7 +95,41 @@
 
                 </div>
 
+                <div class="btn-div">
+                    <button class="next-btn">Next</button>
+                </div>
+
             </div>
+
+            <div class="info-card hidden">
+                <div class="card-container">
+
+                    <div class="input-group">
+                        <label class="input-label" for="client">Client</label>
+                        <select id="client">
+                            <option>Mousta</option>
+                            <option>Servoy</option>
+                            <option>Hamza</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label" for="employee">Employee</label>
+                        <select id="employee">
+                            <option>Mousta</option>
+                            <option>Servoy</option>
+                            <option>Hamza</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="validation-div">
+                    <button class="back-btn">Back</button>
+                    <button class="validate-btn">Validate</button>
+                </div>
+
+            </div>
+
         </div>
 
     </div>
@@ -111,9 +145,29 @@
             <div class="recap-group">
                 <h3 class="recap-subtitle">Client Information</h3>
                 <div class="recap-info">
-                    <span class="recap-text">Email</span>
-                    <p class="recap-info-val">ahmedennaime@gmail.com</p>
+                    <span class="recap-text">First Name</span>
+                    <p class="recap-info-val">Ahmed</p>
                 </div>
+
+                <div class="recap-info">
+                    <span class="recap-text">Last Name</span>
+                    <p class="recap-info-val">Ennaime</p>
+                </div>
+
+                <div class="recap-info">
+                    <span class="recap-text">BirthDate</span>
+                    <p class="recap-info-val">2003-11-12</p>
+                </div>
+
+                <div class="recap-info">
+                    <span class="recap-text">Address</span>
+                    <p class="recap-info-val">Miftah El kheir</p>
+                </div>
+
+            </div>
+
+            <div class="recap-group">
+                <h3 class="recap-subtitle">Employee Info</h3>
 
                 <div class="recap-info">
                     <span class="recap-text">First Name</span>
@@ -125,6 +179,10 @@
                     <p class="recap-info-val">Ennaime</p>
                 </div>
 
+                <div class="recap-info">
+                    <span class="recap-text">Email</span>
+                    <p class="recap-info-val">ahmedennaime@gmail.com</p>
+                </div>
             </div>
 
         </div>

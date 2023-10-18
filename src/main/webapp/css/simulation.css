@@ -98,6 +98,7 @@ html {
     width: 100%;
     margin: 0 auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    height: fit-content;
 }
 
 .card-container {
@@ -187,7 +188,11 @@ select:hover {
     align-items: center;
     gap: 6px;
     width: 100%;
-    background-color: grey;
+    background-color: #5ec576;
+}
+
+.simulation-top-card {
+    border-right: 2px solid white;
 }
 
 .top-card-num {
@@ -213,12 +218,15 @@ select:hover {
 .ctn {
     display: flex;
     justify-content: center;
+    margin-top: 90px;
 }
 
 .recap-ctn {
     width: 20%;
     margin: 0 auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    height: fit-content;
 }
 
 .recap-title {
@@ -241,7 +249,7 @@ select:hover {
 }
 
 .recap-subtitle {
-    background-color: grey;
+    background-color: #5ec576;
     width: 100%;
     padding: 10px;
     border-radius: 15px;
@@ -261,4 +269,68 @@ select:hover {
 .recap-info-val {
     font-size: 14px;
     color: #5ec576;
+}
+
+.btn-div {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.next-btn {
+    background-color: #5ec576;
+    font-size: 1.6rem;
+    font-family: inherit;
+    font-weight: 500;
+    border: none;
+    padding: 1.25rem 4.5rem;
+    border-radius: 10rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.active {
+    background-color: #4a8ff6;
+}
+
+.hidden {
+    display: none;
+}
+
+.validation-div {
+    display: flex;
+    justify-content: space-around;
+}
+
+.validate-btn {
+    background-color: #5ec576;
+    font-size: 1.6rem;
+    font-family: inherit;
+    font-weight: 500;
+    border: none;
+    padding: 1.25rem 4.5rem;
+    border-radius: 10rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.back-btn {
+    background-color: #d74141;
+    font-size: 1.6rem;
+    color: white;
+    font-family: inherit;
+    font-weight: 500;
+    border: none;
+    padding: 1.25rem 4.5rem;
+    border-radius: 10rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+@media screen and (max-width: 480px){
+    .ctn {
+        display: flex;
+        flex-direction: column;
+    }
+
 }
