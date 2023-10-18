@@ -55,8 +55,10 @@
                         <label class="input-label" for="project">My project</label>
                         <select id="project">
                             <option>I need money</option>
-                            <option>I need money</option>
-                            <option>I need money</option>
+                            <option>Financing my used vehicle</option>
+                            <option>Managing the unexpected</option>
+                            <option>Financing my new vehicle</option>
+                            <option>Equipping my home</option>
                         </select>
 
                     </div>
@@ -64,9 +66,12 @@
                     <div class="input-group">
                         <label class="input-label" for="job">I am</label>
                         <select id="job">
-                            <option>Professional</option>
-                            <option>Professional</option>
-                            <option>Professional</option>
+                            <option>Civil servant</option>
+                            <option>Liberal profession</option>
+                            <option>Retailer</option>
+                            <option>Artisan</option>
+                            <option>Retired</option>
+                            <option>Others</option>
                         </select>
 
                     </div>
@@ -89,7 +94,7 @@
 
                     <div class="input-group">
                         <label class="input-label" for="monthly_payment">Monthly payment</label>
-                        <input value="5600" type="text" id="monthly_payment" disabled>
+                        <input type="text" id="monthly_payment" disabled>
                     </div>
 
 
@@ -167,21 +172,26 @@
             </div>
 
             <div class="recap-group">
-                <h3 class="recap-subtitle">Employee Info</h3>
+                <h3 class="recap-subtitle">Credit Details</h3>
 
                 <div class="recap-info">
-                    <span class="recap-text">First Name</span>
-                    <p class="recap-info-val">Ahmed</p>
+                    <span class="recap-text">You are</span>
+                    <p class="recap-info-val">Retailer</p>
                 </div>
 
                 <div class="recap-info">
-                    <span class="recap-text">Last Name</span>
-                    <p class="recap-info-val">Ennaime</p>
+                    <span class="recap-text">Amount</span>
+                    <p class="recap-info-val">63523 DH</p>
                 </div>
 
                 <div class="recap-info">
-                    <span class="recap-text">Email</span>
-                    <p class="recap-info-val">ahmedennaime@gmail.com</p>
+                    <span class="recap-text">Duration</span>
+                    <p class="recap-info-val">32 months</p>
+                </div>
+
+                <div class="recap-info">
+                    <span class="recap-text">Monthly payment</span>
+                    <p class="recap-info-val">14000 DH</p>
                 </div>
             </div>
 
