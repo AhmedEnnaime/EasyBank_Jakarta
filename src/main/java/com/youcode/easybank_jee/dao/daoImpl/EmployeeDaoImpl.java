@@ -30,7 +30,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
             transaction.begin();
             em.persist(employee);
             transaction.commit();
-            System.out.println("daaaz !");
             return Optional.of(employee);
         } catch (Exception e) {
             if (transaction.isActive()) {
