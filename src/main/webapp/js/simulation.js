@@ -16,6 +16,17 @@ const monthly_payment_input = document.getElementById("monthly_payment");
 
 const proportional_annual_rate = 0.12;
 
+const credit_details = document.querySelector('.credit-details');
+const amount_recap = document.getElementById("amount-recap");
+const duration = document.getElementById("duration");
+const monthly_payment_recap = document.getElementById("monthly_payment_recap");
+const client_job = document.getElementById("client_job");
+const job = document.getElementById("job");
+
+const client_details = document.querySelector('.client-details');
+const client_firstName = document.getElementById("client-firstName");
+
+
 amountInput.addEventListener("input", (event) => {
     amountValue.innerText = event.target.value;
     monthly_payment_input.value = calculateMonthlyPayment();
@@ -31,6 +42,7 @@ nextBtn.addEventListener("click", () => {
     info_top_card.classList.add("active");
     info_card.classList.remove("hidden");
     simulation_card.classList.add("hidden");
+    fillCreditDetails();
 });
 
 back_btn.addEventListener("click", () => {
@@ -38,6 +50,7 @@ back_btn.addEventListener("click", () => {
     info_top_card.classList.remove("active");
     info_card.classList.add("hidden");
     simulation_card.classList.remove("hidden");
+    credit_details.classList.add("hidden");
 });
 
 const calculateMonthlyPayment = () => {
@@ -45,4 +58,11 @@ const calculateMonthlyPayment = () => {
     return result.toFixed(2);
 }
 
+const fillCreditDetails = () => {
+    credit_details.classList.remove("hidden");
+    amount_recap.innerText = amountValue.innerText + " DH";
+    duration.innerText = monthsValue.innerText + " months";
+    monthly_payment_recap.innerText = calculateMonthlyPayment() + " DH";
+    client_job.innerText = job.value;
+}
 

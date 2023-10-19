@@ -114,7 +114,7 @@
                         <select id="employee">
                             <option value="">Select employee</option>
                             <c:forEach var="employee" items="${employees}">
-                                <option>${employee.firstName}  ${employee.lastName}</option>
+                                <option value="${employee.matricule}">${employee.firstName}  ${employee.lastName}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -124,7 +124,7 @@
                         <select id="client">
                             <option value="">Select client</option>
                             <c:forEach var="client" items="${clients}">
-                                <option>${client.firstName}  ${client.lastName}</option>
+                                <option value="${client.code}">${client.firstName}  ${client.lastName}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -149,51 +149,51 @@
                 <span id="recap-text" class="recap-text">Personal</span>
             </div>
 
-            <div class="recap-group">
+            <div class="recap-group client-details hidden">
                 <h3 class="recap-subtitle">Client Information</h3>
                 <div class="recap-info">
                     <span class="recap-text">First Name</span>
-                    <p class="recap-info-val">Ahmed</p>
+                    <p id="client-firstName" class="recap-info-val"></p>
                 </div>
 
                 <div class="recap-info">
                     <span class="recap-text">Last Name</span>
-                    <p class="recap-info-val">Ennaime</p>
+                    <p id="client-lastName" class="recap-info-val"></p>
                 </div>
 
                 <div class="recap-info">
                     <span class="recap-text">BirthDate</span>
-                    <p class="recap-info-val">2003-11-12</p>
+                    <p id="client-birthDate" class="recap-info-val"></p>
                 </div>
 
                 <div class="recap-info">
                     <span class="recap-text">Address</span>
-                    <p class="recap-info-val">Miftah El kheir</p>
+                    <p id="client-address" class="recap-info-val"></p>
                 </div>
 
             </div>
 
-            <div class="recap-group">
+            <div class="recap-group credit-details hidden">
                 <h3 class="recap-subtitle">Credit Details</h3>
 
                 <div class="recap-info">
                     <span class="recap-text">You are</span>
-                    <p class="recap-info-val">Retailer</p>
+                    <p id="client_job" class="recap-info-val">Retailer</p>
                 </div>
 
                 <div class="recap-info">
                     <span class="recap-text">Amount</span>
-                    <p class="recap-info-val">63523 DH</p>
+                    <p id="amount-recap" class="recap-info-val"></p>
                 </div>
 
                 <div class="recap-info">
                     <span class="recap-text">Duration</span>
-                    <p class="recap-info-val">32 months</p>
+                    <p id="duration" class="recap-info-val"></p>
                 </div>
 
                 <div class="recap-info">
                     <span class="recap-text">Monthly payment</span>
-                    <p class="recap-info-val">14000 DH</p>
+                    <p id="monthly_payment_recap" class="recap-info-val">14000 DH</p>
                 </div>
             </div>
 
