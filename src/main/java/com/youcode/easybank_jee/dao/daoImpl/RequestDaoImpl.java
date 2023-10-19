@@ -3,6 +3,7 @@ package com.youcode.easybank_jee.dao.daoImpl;
 import com.youcode.easybank_jee.dao.RequestDao;
 import com.youcode.easybank_jee.entities.Client;
 import com.youcode.easybank_jee.entities.Request;
+import com.youcode.easybank_jee.enums.STATE;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class RequestDaoImpl implements RequestDao {
     }
 
     @Override
-    public Optional<Request> findByClient(Client client) {
-        return Optional.empty();
+    public boolean updateState(Integer id, STATE state) {
+        return false;
     }
 }

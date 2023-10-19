@@ -61,7 +61,7 @@ public class ClientServlet extends HttpServlet {
         String birthDateStr = request.getParameter("birthdate");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
-        int employeeMatricule = Integer.parseInt(request.getParameter("employeeMatricule")); // Add this line
+        int employeeMatricule = Integer.parseInt(request.getParameter("employeeMatricule"));
 
         LocalDate birthDate = LocalDate.parse(birthDateStr);
 
