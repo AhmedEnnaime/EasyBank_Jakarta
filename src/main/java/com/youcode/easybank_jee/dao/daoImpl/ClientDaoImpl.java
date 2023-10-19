@@ -7,6 +7,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +15,15 @@ import java.util.Optional;
 @ApplicationScoped
 public class ClientDaoImpl implements ClientDao {
 
-    private final EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+    private final EntityManager em;
+
+    public ClientDaoImpl() {
+        em = JPAUtil.getEntityManagerFactory().createEntityManager();
+    }
+
+    public ClientDaoImpl(EntityManager em) {
+        this.em = em;
+    }
 
     @Override
     public Optional<Client> create(Client client) {
@@ -34,36 +43,24 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
+    @Transactional
     public Optional<Client> update(Client client) {
-        EntityTransaction transaction = em.getTransaction();
-        try {
-            transaction.begin();
-            Client existingClient = em.find(Client.class, client.getCode());
+        Client existingClient = em.find(Client.class, client.getCode());
 
-            if (existingClient != null) {
-                existingClient.setLastName(client.getLastName());
-                existingClient.setFirstName(client.getFirstName());
-                existingClient.setBirthDate(client.getBirthDate());
-                existingClient.setPhone(client.getPhone());
-                existingClient.setAddress(client.getAddress());
-                existingClient.setEmployee(client.getEmployee());
+        if (existingClient != null) {
+            existingClient.setLastName(client.getLastName());
+            existingClient.setFirstName(client.getFirstName());
+            existingClient.setBirthDate(client.getBirthDate());
+            existingClient.setPhone(client.getPhone());
+            existingClient.setAddress(client.getAddress());
+            existingClient.setEmployee(client.getEmployee());
 
-                em.merge(existingClient);
-                transaction.commit();
-                return Optional.of(existingClient);
-            } else {
-                transaction.rollback();
-                return Optional.empty();
-            }
-        } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
+            em.merge(existingClient);
+            return Optional.of(existingClient);
+        } else {
             return Optional.empty();
         }
     }
-
 
     @Override
     public Optional<Client> findByID(Integer id) {
@@ -86,7 +83,7 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public List<Client> getAll() {
-        TypedQuery<Client> query = em.createQuery("SELECT c FROM Client c", Client.class);
+        TypedQuery<Client> query = em.createQuery("SELECT c FROM Client c JOIN FETCH c.employee", Client.class);
         return query.getResultList();
     }
 

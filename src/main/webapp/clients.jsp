@@ -11,7 +11,6 @@
 <head>
     <title>Clients</title>
     <link rel="stylesheet" href="./css/clients.css" />
-    <script src="./js/clients.js"></script>
 </head>
 <body>
 <header class="header">
@@ -24,7 +23,7 @@
             <li class="nav__item"><a class="nav__link" href="${pageContext.servletContext.contextPath}/clients">Clients</a></li>
             <li class="nav__item"><a class="nav__link" href="${pageContext.servletContext.contextPath}/employees">Employees</a></li>
             <li class="nav__item">
-                <a class="nav__link nav__link--btn btn--show-modal" href="#">Simulate a credit</a>
+                <a class="nav__link nav__link--btn btn--show-modal" href="${pageContext.servletContext.contextPath}/simulations">Simulate a credit</a>
             </li>
         </ul>
     </nav>
@@ -45,6 +44,7 @@
             <th>Birthdate</th>
             <th>Phone</th>
             <th>Address</th>
+            <th>Responsible Employee</th>
         </tr>
         </thead>
         <tbody>
@@ -56,8 +56,9 @@
                 <td>${client.birthDate}</td>
                 <td>${client.phone}</td>
                 <td>${client.address}</td>
+                <td>${client.employee.firstName}  ${client.employee.lastName}</td>
                 <td>
-                    <button class="update-button">Update</button>
+                    <button class="update-button" data-clientcode="${client.code}" data-employee-matricule="${client.employee.matricule}">Update</button>
                     <button class="delete-button" data-clientcode="${client.code}">Delete</button>
                 </td>
             </tr>
@@ -85,6 +86,13 @@
 
             <label for="address">Address:</label>
             <input type="text" id="address" name="address" required><br>
+
+            <label for="employee">Select Employee:</label>
+            <select id="employee" name="employeeMatricule">
+                <c:forEach var="employee" items="${employees}">
+                    <option value="${employee.matricule}">${employee.firstName} ${employee.lastName}</option>
+                </c:forEach>
+            </select>
 
             <div class="form-group">
                 <button type="submit" name="action" class="submit-button">Add Client</button>
@@ -116,6 +124,13 @@
             <label for="updateAddress">Address:</label>
             <input type="text" id="updateAddress" name="address" required><br>
 
+            <label for="updateEmployee">Select Employee:</label>
+            <select id="updateEmployee" name="employeeMatricule">
+                <c:forEach var="employee" items="${employees}">
+                    <option value="${employee.matricule}">${employee.firstName} ${employee.lastName}</option>
+                </c:forEach>
+            </select>
+
             <div class="form-group">
                 <button type="submit" name="action" class="submit-button">Update Client</button>
             </div>
@@ -136,6 +151,9 @@
         </form>
     </div>
 </div>
+
+<script src="./js/clients.js"></script>
+
 </body>
 </html>
 

@@ -47,4 +47,11 @@ public class Employee extends Person implements Serializable {
         this.email = email;
         this.agency = agency;
     }
+
+    public Employee(String lastName, String firstName, LocalDate birthDate, String phone, String address,
+                    LocalDate recruitmentDate, String email) {
+        super(lastName, firstName, birthDate, phone, address);
+        this.recruitmentDate = recruitmentDate;
+        this.email = email;
+    }
 }

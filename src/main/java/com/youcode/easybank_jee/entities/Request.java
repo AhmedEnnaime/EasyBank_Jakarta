@@ -41,12 +41,13 @@ public class Request {
     @Transient
     private Simulation simulation;
 
-    public Request(LocalDate credit_date, Double amount, STATE state, String remarks, Integer duration, Simulation simulation) {
+    public Request(LocalDate credit_date, Double amount, STATE state, String remarks, Integer duration, Agency agency, Simulation simulation) {
         this.credit_date = credit_date;
         this.amount = amount;
         this.state = state;
         this.remarks = remarks;
         this.duration = duration;
+        this.agency = agency;
         this.simulation = simulation;
     }
 }

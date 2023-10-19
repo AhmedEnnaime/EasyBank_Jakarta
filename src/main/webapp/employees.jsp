@@ -11,7 +11,6 @@
 <head>
     <title>Employees</title>
     <link rel="stylesheet" href="./css/employees.css" />
-    <script src="./js/employees.js"></script>
 </head>
 <body>
 <header class="header">
@@ -27,7 +26,7 @@
             </li>
             <li class="nav__item">
 
-                <a class="nav__link nav__link--btn btn--show-modal" href="#">Simulate a credit</a>
+                <a class="nav__link nav__link--btn btn--show-modal" href="${pageContext.servletContext.contextPath}/simulations">Simulate a credit</a>
             </li>
         </ul>
     </nav>
@@ -158,5 +157,8 @@
         </form>
     </div>
 </div>
+
+<script src="./js/employees.js"></script>
+
 </body>
 </html>

@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const birthdate = row.querySelector("td:nth-child(4)").textContent;
             const phone = row.querySelector("td:nth-child(5)").textContent;
             const address = row.querySelector("td:nth-child(6)").textContent;
+            const employeeMatricule = row.querySelector("button").getAttribute("data-employee-matricule"); // Get the data attribute
 
             const updateClientIdInput = document.getElementById("updateClientId");
             const updateFirstNameInput = document.getElementById("updateFirstName");
@@ -46,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const updateBirthdateInput = document.getElementById("updateBirthdate");
             const updatePhoneInput = document.getElementById("updatePhone");
             const updateAddressInput = document.getElementById("updateAddress");
+            const updateEmployeeInput = document.getElementById("updateEmployee"); // Add this line
 
             updateClientIdInput.value = clientId;
             updateFirstNameInput.value = firstName;
@@ -53,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
             updateBirthdateInput.value = birthdate;
             updatePhoneInput.value = phone;
             updateAddressInput.value = address;
+            updateEmployeeInput.value = employeeMatricule;
 
             updateClientModal.style.display = "block";
         });
