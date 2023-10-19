@@ -328,6 +328,19 @@ select:hover {
     transition: all 0.3s;
 }
 
+.info-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.create-client-link {
+    text-decoration: underline;
+    font-size: 12px;
+    text-align: end;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 480px){
     .ctn {
         display: flex;

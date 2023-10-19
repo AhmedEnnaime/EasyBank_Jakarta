@@ -109,7 +109,7 @@
 
             <div class="info-card hidden">
                 <div class="card-container">
-                    <form>
+                    <form class="info-form">
                         <div class="input-group">
                             <label class="input-label" for="employee">Employee</label>
                             <select id="employee">
@@ -129,6 +129,8 @@
                                 </c:forEach>
                             </select>
                         </div>
+
+                        <a class="create-client-link" href="${pageContext.servletContext.contextPath}/clients">Not a client ? Be one now</a>
                     </form>
 
                 </div>
