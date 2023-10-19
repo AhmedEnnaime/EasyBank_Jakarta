@@ -27,15 +27,12 @@ public class RequestService {
         return requestDao.getAll();
     }
 
-//    public boolean updateRequestState(Integer number, STATE state) {
-//        if (number.toString().isEmpty() || requestDao.findByID(number).isEmpty()) {
-//            return false;
-//        }else {
-//            return requestDao.updateState(number, state);
-//        }
-//    }
-//
-//    public List<Request> getRequestsByState(STATE state) {
-//        return requestDao.getByState(state);
-//    }
+    public boolean updateRequestState(Integer number, STATE state) {
+        if (number.toString().isEmpty() || requestDao.findByID(number).isEmpty()) {
+            return false;
+        }else {
+            return requestDao.updateState(number, state);
+        }
+    }
+
 }
