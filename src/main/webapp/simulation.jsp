@@ -109,25 +109,28 @@
 
             <div class="info-card hidden">
                 <div class="card-container">
-                    <div class="input-group">
-                        <label class="input-label" for="employee">Employee</label>
-                        <select id="employee">
-                            <option value="">Select employee</option>
-                            <c:forEach var="employee" items="${employees}">
-                                <option value="${employee.matricule}">${employee.firstName}  ${employee.lastName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
+                    <form>
+                        <div class="input-group">
+                            <label class="input-label" for="employee">Employee</label>
+                            <select id="employee">
+                                <option value="">Select employee</option>
+                                <c:forEach var="employee" items="${employees}">
+                                    <option value="${employee.matricule}">${employee.firstName}  ${employee.lastName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
 
-                    <div class="input-group">
-                        <label class="input-label" for="client">Client</label>
-                        <select id="client">
-                            <option value="">Select client</option>
-                            <c:forEach var="client" items="${clients}">
-                                <option value="${client.code}">${client.firstName}  ${client.lastName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
+                        <div class="input-group">
+                            <label class="input-label" for="client">Client</label>
+                            <select id="client">
+                                <option value="">Select client</option>
+                                <c:forEach var="client" items="${clients}">
+                                    <option data-birthDate="${client.birthDate}" data-address="${client.address}" value="${client.code}">${client.firstName}  ${client.lastName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </form>
+
                 </div>
 
                 <div class="validation-div">
