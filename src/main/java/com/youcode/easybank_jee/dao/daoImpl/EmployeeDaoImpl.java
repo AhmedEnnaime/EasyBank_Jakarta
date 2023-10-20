@@ -113,9 +113,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 return false;
             }
         } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
             e.printStackTrace();
             return false;
         }
