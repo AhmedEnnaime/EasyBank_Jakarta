@@ -34,9 +34,6 @@ public class ClientDaoImpl implements ClientDao {
             transaction.commit();
             return Optional.of(client);
         } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
             e.printStackTrace();
             return Optional.empty();
         }
@@ -46,7 +43,7 @@ public class ClientDaoImpl implements ClientDao {
     @Transactional
     public Optional<Client> update(Client client) {
         Client existingClient = em.find(Client.class, client.getCode());
-
+        EntityTransaction transaction = em.getTransaction();
         if (existingClient != null) {
             existingClient.setLastName(client.getLastName());
             existingClient.setFirstName(client.getFirstName());
@@ -56,8 +53,10 @@ public class ClientDaoImpl implements ClientDao {
             existingClient.setEmployee(client.getEmployee());
 
             em.merge(existingClient);
+            transaction.commit();
             return Optional.of(existingClient);
         } else {
+            transaction.rollback();
             return Optional.empty();
         }
     }
@@ -69,12 +68,8 @@ public class ClientDaoImpl implements ClientDao {
             transaction.begin();
             Client client = em.find(Client.class, id);
             transaction.commit();
-
             return Optional.ofNullable(client);
         } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
             e.printStackTrace();
             return Optional.empty();
         }
@@ -102,16 +97,9 @@ public class ClientDaoImpl implements ClientDao {
                 return false;
             }
         } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
             e.printStackTrace();
             return false;
         }
     }
 
-    @Override
-    public List<Client> findByAnyAttribute(String attribute) {
-        return null;
-    }
 }

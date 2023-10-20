@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface EmployeeDao extends IData<Employee, Integer>{
 
-    public List<Client> findByAnyAttribute(String attribute);
-
 }

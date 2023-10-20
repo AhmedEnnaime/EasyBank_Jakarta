@@ -6,6 +6,4 @@ import java.util.List;
 
 public interface ClientDao extends IData<Client, Integer>{
 
-    public List<Client> findByAnyAttribute(String attribute);
-
 }

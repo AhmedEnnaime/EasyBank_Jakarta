@@ -42,15 +42,7 @@ public class EmployeeDaoImplTest {
     @Transactional
     void testCreateEmployee() {
 
-        Employee employee = new Employee(
-                "Mousta",
-                "Delegue",
-                LocalDate.of(2001, 11, 17),
-                "06473347924",
-                "Jrayfat",
-                LocalDate.of(2023, 9, 21),
-                "mousta@gmail.com"
-        );
+        Employee employee = new Employee();
 
         Mockito.when(entityManager.getTransaction()).thenReturn(transaction);
 
@@ -66,15 +58,7 @@ public class EmployeeDaoImplTest {
     @Transactional
     void testFindEmployeeByID() {
 
-        Employee employee = new Employee(
-                "Mousta",
-                "Delegue",
-                LocalDate.of(2001, 11, 17),
-                "06473347924",
-                "Jrayfat",
-                LocalDate.of(2023, 9, 21),
-                "mousta@gmail.com"
-        );
+        Employee employee = new Employee();
 
         int employeeId = 1;
 
@@ -109,15 +93,7 @@ public class EmployeeDaoImplTest {
     @Test
     void testUpdateEmployee() {
 
-        Employee employee = new Employee(
-                "Mousta",
-                "Delegue",
-                LocalDate.of(2001, 11, 17),
-                "06473347924",
-                "Jrayfat",
-                LocalDate.of(2023, 9, 21),
-                "mousta@gmail.com"
-        );
+        Employee employee = new Employee();
 
         Mockito.when(entityManager.getTransaction()).thenReturn(transaction);
         Mockito.when(entityManager.find(Employee.class, employee.getMatricule())).thenReturn(employee);
@@ -135,15 +111,7 @@ public class EmployeeDaoImplTest {
     @Transactional
     void testDeleteEmployee() {
 
-        Employee employee = new Employee(
-                "Mousta",
-                "Delegue",
-                LocalDate.of(2001, 11, 17),
-                "06473347924",
-                "Jrayfat",
-                LocalDate.of(2023, 9, 21),
-                "mousta@gmail.com"
-        );
+        Employee employee = new Employee();
 
         int employeeId = 1;
 

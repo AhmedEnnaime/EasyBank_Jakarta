@@ -118,8 +118,4 @@ public class EmployeeDaoImpl implements EmployeeDao {
         }
     }
 
-    @Override
-    public List<Client> findByAnyAttribute(String attribute) {
-        return null;
-    }
 }
