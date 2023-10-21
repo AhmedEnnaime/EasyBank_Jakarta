@@ -12,6 +12,9 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -67,21 +70,21 @@ public class ClientDaoImplTest {
 
     }
 
-//    @Test
-//    @Transactional
-//    public void testGetAllClients() {
-//        Client client1 = new Client("John", "Doe", LocalDate.of(1985, 5, 15), "0628738264", "Address 1");
-//        Client client2 = new Client("Alice", "Smith", LocalDate.of(1990, 3, 20), "0791234567", "Address 2");
-//        List<Client> clients = Arrays.asList(client1, client2);
-//
-//        when(entityManager.createQuery("SELECT c FROM Client c", Client.class)).thenReturn(query);
-//        when(query.getResultList()).thenReturn(clients);
-//
-//        List<Client> result = clientDao.getAll();
-//
-//        assertTrue(result.containsAll(clients));
-//        assertEquals(clients.size(), result.size());
-//    }
+    @Test
+    @Transactional
+    public void testGetAllClients() {
+        Client client1 = new Client("John", "Doe", LocalDate.of(1985, 5, 15), "0628738264", "Address 1");
+        Client client2 = new Client("Alice", "Smith", LocalDate.of(1990, 3, 20), "0791234567", "Address 2");
+        List<Client> clients = Arrays.asList(client1, client2);
+
+        when(entityManager.createQuery("SELECT c FROM Client c JOIN FETCH c.employee", Client.class)).thenReturn(query);
+        when(query.getResultList()).thenReturn(clients);
+
+        List<Client> result = clientDao.getAll();
+
+        assertTrue(result.containsAll(clients));
+        assertEquals(clients.size(), result.size());
+    }
 
     @Test
     @Transactional
