@@ -6,9 +6,6 @@ import jakarta.inject.Inject;
 
 public class SimulationService {
 
-    @Inject
-    private EmployeeDao employeeDao;
-
     public double createSimulation(Simulation simulation) {
         double result = 0;
         try {

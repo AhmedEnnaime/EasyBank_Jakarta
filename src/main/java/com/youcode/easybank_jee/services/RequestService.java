@@ -1,6 +1,7 @@
 package com.youcode.easybank_jee.services;
 
 import com.youcode.easybank_jee.dao.RequestDao;
+import com.youcode.easybank_jee.dao.daoImpl.RequestDaoImpl;
 import com.youcode.easybank_jee.entities.Request;
 import com.youcode.easybank_jee.enums.STATE;
 import jakarta.inject.Inject;
@@ -12,6 +13,10 @@ public class RequestService {
 
     @Inject
     private RequestDao requestDao;
+
+    public void setRequestDao(RequestDaoImpl requestDao) {
+        this.requestDao = requestDao;
+    }
 
     public Request createRequest(Request request) {
         Optional<Request> optionalRequest = requestDao.create(request);
