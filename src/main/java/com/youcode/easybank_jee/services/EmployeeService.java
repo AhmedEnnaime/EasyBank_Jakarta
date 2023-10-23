@@ -13,6 +13,10 @@ public class EmployeeService {
     @Inject
     private EmployeeDaoImpl employeeDao;
 
+    public void setEmployeeDao(EmployeeDaoImpl employeeDao) {
+        this.employeeDao = employeeDao;
+    }
+
 
     public Employee createEmployee(Employee employee) throws Exception {
         if (employee == null) {
@@ -43,10 +47,14 @@ public class EmployeeService {
     }
 
     public void updateEmployee(Employee employee) throws Exception {
-        if (employeeDao.findByID(employee.getMatricule()).isEmpty() || employee == null) {
-            throw new Exception("Employee cannot be null check out again if the id is valid");
-        }else {
+        if (employee == null) {
+            throw new Exception("Employee cannot be null");
+        }
+        if (employeeDao.findByID(employee.getMatricule()).isEmpty()) {
+            throw new Exception("Employee not found, please check if the ID is valid");
+        } else {
             employeeDao.update(employee).get();
         }
     }
+
 }
