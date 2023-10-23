@@ -110,19 +110,19 @@ public class EmployeeServiceTest {
 //        verify(employeeDao).delete(employeeId);
 //    }
 
-//    @Test
-//    public void testUpdateEmployee() {
-//
-//        Employee employee = new Employee();
-//        when(employeeDao.update(employee)).thenReturn(Optional.of(employee));
-//
-//        try {
-//            employeeService.updateEmployee(employee);
-//            verify(employeeDao).update(employee);
-//        } catch (Exception e) {
-//            fail("Exception should not be thrown");
-//        }
-//    }
+    @Test
+    public void testUpdateEmployeeWithValidEmployee() {
+        Employee employee = new Employee();
+        when(employeeDao.update(employee)).thenReturn(Optional.of(employee));
+
+        try {
+            employeeService.updateEmployee(employee);
+            verify(employeeDao).update(employee);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
 
     @Test
     public void testUpdateEmployeeWithInvalidEmployee() {

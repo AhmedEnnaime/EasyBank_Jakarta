@@ -6,6 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class EmployeeService {
@@ -27,10 +28,11 @@ public class EmployeeService {
     }
 
     public boolean deleteEmployee(Integer id) {
-        if (id.toString().isEmpty() || employeeDao.findByID(id).isEmpty()) {
-            return false;
-        }else {
+        Optional<Employee> retrievedEmployee = employeeDao.findByID(id);
+        if (retrievedEmployee.isPresent()) {
             return employeeDao.delete(id);
+        }else {
+            return false;
         }
     }
 
@@ -50,7 +52,8 @@ public class EmployeeService {
         if (employee == null) {
             throw new Exception("Employee cannot be null");
         }
-        if (employeeDao.findByID(employee.getMatricule()).isEmpty()) {
+        Optional<Employee> retrievedEmployee = employeeDao.findByID(employee.getMatricule());
+        if (retrievedEmployee.isPresent()) {
             throw new Exception("Employee not found, please check if the ID is valid");
         } else {
             employeeDao.update(employee).get();
