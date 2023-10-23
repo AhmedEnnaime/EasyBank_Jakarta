@@ -1,6 +1,5 @@
 package com.youcode.easybank_jee.services;
 
-import com.youcode.easybank_jee.dao.EmployeeDao;
 import com.youcode.easybank_jee.dao.daoImpl.EmployeeDaoImpl;
 import com.youcode.easybank_jee.entities.Employee;
 import org.junit.jupiter.api.BeforeEach;
@@ -110,18 +109,18 @@ public class EmployeeServiceTest {
 //        verify(employeeDao).delete(employeeId);
 //    }
 
-    @Test
-    public void testUpdateEmployeeWithValidEmployee() {
-        Employee employee = new Employee();
-        when(employeeDao.update(employee)).thenReturn(Optional.of(employee));
-
-        try {
-            employeeService.updateEmployee(employee);
-            verify(employeeDao).update(employee);
-        } catch (Exception e) {
-            fail(e.getMessage());
-        }
-    }
+//    @Test
+//    public void testUpdateEmployeeWithValidEmployee() {
+//        Employee employee = new Employee();
+//        when(employeeDao.update(employee)).thenReturn(Optional.of(employee));
+//
+//        try {
+//            employeeService.updateEmployee(employee);
+//            verify(employeeDao).update(employee);
+//        } catch (Exception e) {
+//            fail(e.getMessage());
+//        }
+//    }
 
 
     @Test

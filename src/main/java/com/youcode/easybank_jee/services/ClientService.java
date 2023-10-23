@@ -6,6 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class ClientService {
@@ -13,11 +14,15 @@ public class ClientService {
     @Inject
     private ClientDaoImpl clientDao;
 
-    public void createClient(Client client) throws Exception {
+    public void setClientDao(ClientDaoImpl clientDao) {
+        this.clientDao = clientDao;
+    }
+
+    public Client createClient(Client client) throws Exception {
         if (client == null) {
             throw new Exception("Client cannot be null");
         }else {
-            clientDao.create(client).get();
+            return clientDao.create(client).get();
         }
     }
 
@@ -41,11 +46,15 @@ public class ClientService {
         return clientDao.getAll();
     }
 
-    public Client updateClient(Client client) throws Exception {
-        if (clientDao.findByID(client.getCode()).isEmpty()) {
-            throw new Exception("Client cannot be null check out again if the id is valid");
+    public void updateClient(Client client) throws Exception {
+        if (client == null) {
+            throw new Exception("Client cannot be null");
+        }
+        Optional<Client> retrievedClient = clientDao.findByID(client.getCode());
+        if (retrievedClient.isPresent()) {
+            clientDao.update(client);
         }else {
-            return clientDao.update(client).get();
+            throw new Exception("Client cannot be null check out again if the id is valid");
         }
     }
 }

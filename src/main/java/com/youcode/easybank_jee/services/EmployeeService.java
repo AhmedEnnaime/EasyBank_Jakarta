@@ -54,9 +54,9 @@ public class EmployeeService {
         }
         Optional<Employee> retrievedEmployee = employeeDao.findByID(employee.getMatricule());
         if (retrievedEmployee.isPresent()) {
-            throw new Exception("Employee not found, please check if the ID is valid");
-        } else {
             employeeDao.update(employee).get();
+        } else {
+            throw new Exception("Employee not found, please check if the ID is valid");
         }
     }
 
