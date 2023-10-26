@@ -27,10 +27,11 @@ public class ClientService {
     }
 
     public boolean deleteClient(Integer id) {
-        if (id.toString().isEmpty() || clientDao.findByID(id).isEmpty()) {
-            return false;
-        }else {
+        Optional<Client> retrievedClient = clientDao.findByID(id);
+        if (retrievedClient.isPresent()) {
             return clientDao.delete(id);
+        }else {
+            return false;
         }
     }
 
